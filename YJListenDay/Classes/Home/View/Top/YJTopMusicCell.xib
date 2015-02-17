@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="news" id="hHD-jg-y9w" customClass="YJTopMusicCell">
+            <rect key="frame" x="0.0" y="0.0" width="234" height="136"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="234" height="136"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="aas-f0-wAq">
+                        <rect key="frame" x="0.0" y="0.0" width="234" height="104"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGd-Uf-5lm">
+                        <rect key="frame" x="0.0" y="104" width="234" height="32"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbX-KB-fFg">
+                                <rect key="frame" x="24" y="5" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="0.51000000000000001" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="Gm0-PB-LgM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="OGd-Uf-5lm" secondAttribute="trailing" id="6TV-6x-7h4"/>
+                <constraint firstAttribute="trailing" secondItem="aas-f0-wAq" secondAttribute="trailing" id="8yL-nj-Pz1"/>
+                <constraint firstItem="OGd-Uf-5lm" firstAttribute="top" secondItem="aas-f0-wAq" secondAttribute="bottom" id="9CI-7y-nOf"/>
+                <constraint firstItem="aas-f0-wAq" firstAttribute="top" secondItem="hHD-jg-y9w" secondAttribute="top" id="CYZ-ik-WZv"/>
+                <constraint firstItem="OGd-Uf-5lm" firstAttribute="leading" secondItem="hHD-jg-y9w" secondAttribute="leading" id="Ym4-iJ-F4M"/>
+                <constraint firstAttribute="bottom" secondItem="OGd-Uf-5lm" secondAttribute="bottom" id="eSe-gJ-63c"/>
+                <constraint firstItem="aas-f0-wAq" firstAttribute="leading" secondItem="hHD-jg-y9w" secondAttribute="leading" id="roZ-l1-f3u"/>
+            </constraints>
+            <size key="customSize" width="248" height="112"/>
+            <connections>
+                <outlet property="iconView" destination="aas-f0-wAq" id="IRx-NS-ccZ"/>
+                <outlet property="titleView" destination="CbX-KB-fFg" id="43j-QL-fVu"/>
+            </connections>
+            <point key="canvasLocation" x="177" y="106"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="card" width="24" height="24"/>
+    </resources>
+</document>
