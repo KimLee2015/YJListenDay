@@ -20,37 +20,34 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
     YJMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"music"];
-    [cell.textView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:cell action:@selector(clickLabel)]];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
-}
-
-#pragma mark - 播放点击label时,其对应的文本
-- (void)clickLabel
-{
-    if ([self.delegate respondsToSelector:@selector(didClickedLabel:)]) {
-        [self.delegate didClickedLabel:self.word];
-    }
 }
 
 #pragma mark - label显示状态
 - (void)hightLighted
 {
     self.textView.textColor = [UIColor blueColor];
+    self.word.play = YES;
 }
 
+/**
+ *  普通显示，并修改模型属性，防止状态重用
+ */
 - (void)normal
 {
     self.textView.textColor = [UIColor blackColor];
+    self.word.play = NO;
 }
 
 - (void)setWord:(YJWord *)word
 {
     _word = word;
     self.textView.text = word.text;
-    if (_word.isPlayed) {
-        [self hightLighted];
+    if (word.isPlayed) {
+        self.textView.textColor = [UIColor blueColor];
     } else {
-        [self normal];
+        self.textView.textColor = [UIColor blackColor];
     }
 }
 @end

@@ -4,27 +4,63 @@
 <array>
 	<dict>
 		<key>text</key>
-		<string>A: Good afternoon. What can I do for you?</string>
+		<string>A: Good evening. My name is Fabio, I’ll be yourwaiter for tonight. May I take your order?</string>
 		<key>time</key>
-		<string>9.00</string>
+		<string>10.00</string>
 	</dict>
 	<dict>
 		<key>text</key>
-		<string>B: I’d like to check in please. I have a reservation under the name Anthony Roberts.</string>
+		<string>B: No, I’m still working on it. This menu is not even in English. What’s good here?</string>
 		<key>time</key>
-		<string>11.00</string>
+		<string>15.00</string>
 	</dict>
 	<dict>
 		<key>text</key>
-		<string>A: All right R.O.B.E.R.T.S... Oh, Mr. Roberts we’ve been expecting you... and here is your keycard to the presidential suite.</string>
+		<string>A: For you sir, I would recommend spaghetti and meatballs.</string>
 		<key>time</key>
-		<string>16.00</string>
+		<string>20.00</string>
 	</dict>
 	<dict>
 		<key>text</key>
-		<string>B: But there must be some mistake; my reservation was for a standard room.</string>
+		<string>B: Does it come with coke and fries?</string>
 		<key>time</key>
 		<string>26.00</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>A: It comes with either soup or salad and a compli- mentary glass of wine, Sir.</string>
+		<key>time</key>
+		<string>29.00</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>B: I’ll go with the spaghetti and meatballs, salad and the wine.</string>
+		<key>time</key>
+		<string>36.00</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>A: Excellent choice, your order will be ready soon.</string>
+		<key>time</key>
+		<string>41.00</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>B: How soon is soon?</string>
+		<key>time</key>
+		<string>46.00</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>A: Twenty minutes?</string>
+		<key>time</key>
+		<string>48.00</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>B: You know what? I’ll just go grab a burger across the street.</string>
+		<key>time</key>
+		<string>50.00</string>
 	</dict>
 </array>
 </plist>

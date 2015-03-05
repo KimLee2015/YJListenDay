@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A74F1C41AA4804900D2376A /* 001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2A74F1C31AA4804900D2376A /* 001.mp3 */; };
 		2AB262581A8CD5FA0055F395 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB262561A8CD5FA0055F395 /* Main.storyboard */; };
 		2AB2625A1A8CD5FA0055F395 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB262591A8CD5FA0055F395 /* Images.xcassets */; };
 		2AB2625D1A8CD5FA0055F395 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2625B1A8CD5FA0055F395 /* LaunchScreen.xib */; };
@@ -48,7 +49,6 @@
 		2AB262E81A8CD8150055F395 /* MusicDetail01.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AB262E51A8CD8150055F395 /* MusicDetail01.plist */; };
 		2AB262E91A8CD8150055F395 /* MusicGroup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AB262E61A8CD8150055F395 /* MusicGroup.plist */; };
 		2AB262EA1A8CD8150055F395 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2AB262E71A8CD8150055F395 /* words.plist */; };
-		2AB262ED1A8CD8650055F395 /* 003.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2AB262EC1A8CD8650055F395 /* 003.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A74F1C31AA4804900D2376A /* 001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 001.mp3; sourceTree = "<group>"; };
 		2AB262491A8CD5FA0055F395 /* YJListenDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJListenDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AB2624D1A8CD5FA0055F395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AB262571A8CD5FA0055F395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -135,7 +136,6 @@
 		2AB262E51A8CD8150055F395 /* MusicDetail01.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MusicDetail01.plist; sourceTree = "<group>"; };
 		2AB262E61A8CD8150055F395 /* MusicGroup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MusicGroup.plist; sourceTree = "<group>"; };
 		2AB262E71A8CD8150055F395 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
-		2AB262EC1A8CD8650055F395 /* 003.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 003.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,7 +431,7 @@
 		2AB262EB1A8CD8650055F395 /* music */ = {
 			isa = PBXGroup;
 			children = (
-				2AB262EC1A8CD8650055F395 /* 003.mp3 */,
+				2A74F1C31AA4804900D2376A /* 001.mp3 */,
 			);
 			path = music;
 			sourceTree = "<group>";
@@ -518,12 +518,12 @@
 			files = (
 				2AB262581A8CD5FA0055F395 /* Main.storyboard in Resources */,
 				2AB262BB1A8CD6690055F395 /* YJDetailHeaderView.xib in Resources */,
+				2A74F1C41AA4804900D2376A /* 001.mp3 in Resources */,
 				2AB262E91A8CD8150055F395 /* MusicGroup.plist in Resources */,
 				2AB2625D1A8CD5FA0055F395 /* LaunchScreen.xib in Resources */,
 				2AB262EA1A8CD8150055F395 /* words.plist in Resources */,
 				2AB262AD1A8CD6690055F395 /* YJTopMusicCell.xib in Resources */,
 				2AB262B51A8CD6690055F395 /* YJMusicCell.xib in Resources */,
-				2AB262ED1A8CD8650055F395 /* 003.mp3 in Resources */,
 				2AB262B01A8CD6690055F395 /* YJHomeCell.xib in Resources */,
 				2AB262E81A8CD8150055F395 /* MusicDetail01.plist in Resources */,
 				2AB2625A1A8CD5FA0055F395 /* Images.xcassets in Resources */,
@@ -766,6 +766,7 @@
 				2AB2626E1A8CD5FA0055F395 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2AB2626F1A8CD5FA0055F395 /* Build configuration list for PBXNativeTarget "YJListenDayTests" */ = {
 			isa = XCConfigurationList;
@@ -774,6 +775,7 @@
 				2AB262711A8CD5FA0055F395 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
