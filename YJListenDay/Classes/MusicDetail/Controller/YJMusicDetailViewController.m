@@ -10,7 +10,7 @@
 #import "YJMusicDetail.h"
 #import "YJDetailCell.h"
 #import "MJExtension.h"
-#import "YJMusicViewController.h"
+#import "YJWordViewController.h"
 
 @interface YJMusicDetailViewController ()
 /**
@@ -31,12 +31,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonClick)];
+}
+
+- (void)backButtonClick
+{
+    NSLog(@"sdd");
 }
 
 #pragma mark - Table view data source
@@ -56,7 +56,7 @@
 #pragma mark - 跳转控制器
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    YJMusicViewController *control = segue.destinationViewController;
+    YJWordViewController *control = segue.destinationViewController;
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     control.detail = self.musicDetails[path.row];
 }

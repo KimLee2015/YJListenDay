@@ -1,5 +1,5 @@
 //
-//  YJMusicViewController.h
+//  YJWordViewController.h
 //  ListenVideo
 //
 //  Created by Lee on 1/31/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 @class YJMusicDetail;
-@interface YJMusicViewController : UIViewController
+@interface YJWordViewController : UIViewController
 @property (nonatomic,strong) YJMusicDetail *detail;
 @end

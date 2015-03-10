@@ -10,7 +10,7 @@
 		<key>pages</key>
 		<string>10</string>
 		<key>detailURL</key>
-		<string>MusicDetail01.plist</string>
+		<string>detail01.plist</string>
 	</dict>
 	<dict>
 		<key>icon</key>
@@ -20,7 +20,7 @@
 		<key>pages</key>
 		<string>10</string>
 		<key>detailURL</key>
-		<string>MusicDetail01.plist</string>
+		<string>detail01.plist</string>
 	</dict>
 </array>
 </plist>

@@ -25,12 +25,16 @@
     // 注册cell
     [view.collectionView registerNib:[UINib nibWithNibName:@"YJTopMusicCell" bundle:nil] forCellWithReuseIdentifier:@"news"];
     [view.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:2500 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-    NSLog(@"%f",view.collectionView.width);
     [view.layout setItemSize:CGSizeMake(view.collectionView.width, view.collectionView.height)];
-
+    view.width = [UIScreen mainScreen].bounds.size.width;
+    view.height = [YJHeaderView height];
     return view;
 }
 
++ (CGFloat)height
+{
+    return 150;
+}
 
 - (NSArray *)topMusics
 {
@@ -75,6 +79,14 @@
 {
     int page = (scrollView.contentOffset.x / 2500) / scrollView.frame.size.width;
     self.pageController.currentPage = page;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    YJTopMusic *top = self.topMusics[indexPath.row % self.topMusics.count];
+    if ([self.delegate respondsToSelector:@selector(headerView:didSelectedCell:)]) {
+        [self.delegate headerView:self didSelectedCell:top];
+    }
 }
 
 @end

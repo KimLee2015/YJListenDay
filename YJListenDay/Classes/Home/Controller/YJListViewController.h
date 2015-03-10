@@ -1,5 +1,5 @@
 //
-//  YJHomeViewController.h
+//  YJListViewController.h
 //  ListenVideo
 //
 //  Created by Lee on 1/24/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YJHomeViewController : UITableViewController
+@interface YJListViewController : UITableViewController
 
 @end

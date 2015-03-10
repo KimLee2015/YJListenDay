@@ -148,6 +148,70 @@
             </objects>
             <point key="canvasLocation" x="-2726" y="-1826"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VuN-Me-GFu">
+            <objects>
+                <navigationController id="Bzn-4L-ZBA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i9R-Ow-7Jr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="b3G-RI-R4h" kind="relationship" relationship="rootViewController" id="h3J-x1-oOF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaX-5G-1yM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3428" y="-1096"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="94M-P5-fOC">
+            <objects>
+                <viewController id="b3G-RI-R4h" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HyN-fO-B5t"/>
+                        <viewControllerLayoutGuide type="bottom" id="Olb-Wx-lfk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Ig-53-1bz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ej6-AM-nK3">
+                                <rect key="frame" x="395" y="222" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="sEI-qH-PoP" kind="show" id="vFm-Vd-kw5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7PA-iu-dkr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EbU-85-29d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2794" y="-917"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AFO-UE-G2M">
+            <objects>
+                <viewController id="sEI-qH-PoP" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U2c-8S-uc5"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ms8-eF-ldc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HIw-0U-ym6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vaQ-nD-7jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2259" y="-978"/>
+        </scene>
         <!--Music View Controller-->
         <scene sceneID="kVu-bt-101">
             <objects>
@@ -195,7 +259,7 @@
                                     <outlet property="delegate" destination="G8e-2w-6Kx" id="NzS-aK-mqN"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihT-JG-NGZ">
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihT-JG-NGZ" userLabel="PlayerToolBar">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GV-hF-2lt" userLabel="next">
@@ -269,12 +333,13 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="MZq-O8-V9a" id="ol1-PR-011"/>
+                        <outlet property="playButton" destination="MZq-O8-V9a" id="Cpt-hq-s5q"/>
                         <outlet property="tableView" destination="3Hr-hm-Ob3" id="Lvu-GF-Mjg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXL-4h-Icc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3304" y="-1046"/>
+            <point key="canvasLocation" x="-4190" y="-1104"/>
         </scene>
     </scenes>
     <resources>

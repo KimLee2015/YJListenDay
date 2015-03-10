@@ -13,7 +13,7 @@
 /**
  *  Musicxx.plist的URL
  */
-@property (nonatomic,copy) NSString *musicURL;
+@property (nonatomic,copy) NSString *wordsURL;
 /**
  *  播放的mp3文件
  */

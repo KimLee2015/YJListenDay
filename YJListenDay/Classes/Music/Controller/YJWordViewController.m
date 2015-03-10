@@ -1,59 +1,75 @@
 //
-//  YJMusicViewController.m
+//  YJWordViewController.m
 //  ListenVideo
 //
 //  Created by Lee on 1/31/15.
 //  Copyright (c) 2015 Lee. All rights reserved.
 //
 
-#import "YJMusicViewController.h"
+#import "YJWordViewController.h"
 #import "YJWord.h"
 #import "YJMusicDetail.h"
 #import "MJExtension.h"
 #import "YJMusicCell.h"
 #import "MJAudioTool.h"
 
-@interface YJMusicViewController () <YJMusicCellDelegate,UITableViewDataSource,UITableViewDelegate>
+#define setPlayButtonStopImage [self.playButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+
+#define setPlayButtonPlayImage [self.playButton setImage:[UIImage imageNamed:@"start"] forState:UIControlStateNormal];
+
+@interface YJWordViewController () <YJMusicCellDelegate,UITableViewDataSource,UITableViewDelegate>
 /**
  *  YJMusic数组
  */
 @property (nonatomic,strong) NSArray *musics;
-
+/**
+ *  YJWord
+ */
+@property (nonatomic,strong) NSArray *words;
 /**
  *  MP3文件名
  */
 @property (nonatomic,copy) NSString *mp3;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 /**
  *  播放器
  */
 @property (nonatomic, strong) AVAudioPlayer *wordPlayer;
 @property (nonatomic,strong) CADisplayLink *link;
-@property (nonatomic,strong) CADisplayLink *link2;
-/**
- *  YJWord(句子和时间)
- */
-@property (nonatomic,strong) NSArray *words;
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 - (IBAction)back;
 - (IBAction)play;
 - (IBAction)next;
 @end
 
-@implementation YJMusicViewController
+@implementation YJWordViewController
+
+- (void)playMusic
+{
+    if (!self.wordPlayer.isPlaying) {
+        self.wordPlayer = [MJAudioTool playMusic:self.mp3];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.rowHeight = 200;
     [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonClick)];
+     
+}
+
+- (void)backButtonClick
+{
+    NSLog(@"backbutton");
 }
 
 - (void)setDetail:(YJMusicDetail *)detail
 {
     _detail = detail;
-    self.words = [YJWord objectArrayWithFilename:detail.musicURL];
+    self.words = [YJWord objectArrayWithFilename:detail.wordsURL];
     self.mp3 = detail.mp3;
 }
 
@@ -68,7 +84,7 @@
 #pragma mark - 实时高亮显示cell
 - (void)update
 {
-    // 当前播放的位置 11.5
+    // 当前播放的位置
     double currentTime = self.wordPlayer.currentTime;
     
     int count = self.words.count;
@@ -119,9 +135,33 @@
     [self playMusic];
     self.wordPlayer.currentTime = cell.word.time + 0.05;
     [cell hightLighted];
-//    YJWord *w = self.words[indexPath.row];
-//    w.play = YES;
-//    [self showCell:indexPath];
+}
+
+/**
+ *  让被取消选中行普通显示
+ */
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YJMusicCell *cell = (YJMusicCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+    [cell normal];
+}
+
+/**
+ *  高亮显示选中行，其他恢复为普通状态
+ */
+- (void)showCell:(NSIndexPath *)path
+{
+
+    YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:path];
+    for (int i = 0; i < self.words.count; i++) {
+        if (i == path.row) {
+            [cell hightLighted];
+        }
+        else { // 其它cell普通显示
+            YJMusicCell *c = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            [c normal];
+        }
+    }
 }
 
 /**
@@ -134,34 +174,6 @@
     [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // 取消选中行恢复普通显示
-    YJMusicCell *cell = (YJMusicCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
-    [cell normal];
-//    YJWord *w = self.words[indexPath.row];
-//    w.play = NO;
-}
-
-/**
- *  高亮显示选中行，其他恢复为普通状态
- */
-- (void)showCell:(NSIndexPath *)path
-{
-
-    YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:path];
-    for (int i = 0; i < self.words.count; i++) {
-        if (i == path.row) {
-//            [self.tableView selectRowAtIndexPath:path animated:NO scrollPosition:UITableViewScrollPositionNone];
-            [cell hightLighted];
-        }
-        else { // 其它cell普通显示
-            YJMusicCell *c = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-            [c normal];
-        }
-    }
-}
-
 #pragma mark - 播放器相关操作
 - (IBAction)back {
     NSIndexPath *path = self.tableView.indexPathForSelectedRow;
@@ -169,19 +181,20 @@
     NSIndexPath *backPath = [NSIndexPath indexPathForRow:path.row - 1 inSection:0];
     [self tableView:self.tableView didDeselectRowAtIndexPath:path];
     [self scrollAndSelectCell:backPath];
+    setPlayButtonPlayImage;
 }
 
 - (IBAction)play {
     if (self.wordPlayer.isPlaying) {
         [self.wordPlayer stop];
-        [self.backButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        setPlayButtonPlayImage;
     } else { // 还没播放
         [self playMusic];
+        setPlayButtonStopImage;
         NSIndexPath *path = self.tableView.indexPathForSelectedRow;
         if (path.row > 0) { // 先按了下一个按钮跳转到其他语句
             [self tableView:self.tableView didSelectRowAtIndexPath:path];
         }
-        [self.backButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
     }
 }
 
@@ -193,16 +206,14 @@
     NSIndexPath *nextPath = [NSIndexPath indexPathForRow:path.row + 1 inSection:0];
     [self scrollAndSelectCell:nextPath];
     [self tableView:self.tableView didDeselectRowAtIndexPath:path];
+    setPlayButtonPlayImage;
+    
 
 }
 
-/**
- *  播放音乐
- */
-- (void)playMusic
+#pragma mark - 返回
+- (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    if (!self.wordPlayer.isPlaying) {
-        self.wordPlayer = [MJAudioTool playMusic:self.mp3];
-    }
+    [self.wordPlayer pause];
 }
 @end

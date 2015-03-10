@@ -13,14 +13,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="234" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="aas-f0-wAq">
-                        <rect key="frame" x="0.0" y="0.0" width="234" height="104"/>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGd-Uf-5lm">
                         <rect key="frame" x="0.0" y="104" width="234" height="32"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbX-KB-fFg">
-                                <rect key="frame" x="24" y="5" width="66" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbX-KB-fFg">
+                                <rect key="frame" x="30" y="5" width="34" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -28,9 +25,14 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="0.51000000000000001" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="CbX-KB-fFg" firstAttribute="leading" secondItem="OGd-Uf-5lm" secondAttribute="leading" constant="30" id="CEy-aP-nPz"/>
+                            <constraint firstAttribute="centerY" secondItem="CbX-KB-fFg" secondAttribute="centerY" id="FU5-ia-tlZ"/>
                             <constraint firstAttribute="height" constant="32" id="Gm0-PB-LgM"/>
                         </constraints>
                     </view>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card" translatesAutoresizingMaskIntoConstraints="NO" id="aas-f0-wAq">
+                        <rect key="frame" x="0.0" y="0.0" width="234" height="104"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>

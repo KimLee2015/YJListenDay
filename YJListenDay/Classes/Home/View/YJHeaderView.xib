@@ -7,17 +7,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="tY1-Kd-SPo" customClass="YJHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Jc8-7c-02i">
-                    <rect key="frame" x="141" y="91.5" width="39" height="37"/>
-                </pageControl>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-Ij-EWO">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Pyy-LG-8xF">
-                        <size key="itemSize" width="320" height="130"/>
+                        <size key="itemSize" width="320" height="150"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -27,23 +24,30 @@
                         <outlet property="delegate" destination="tY1-Kd-SPo" id="wPA-h1-RaC"/>
                     </connections>
                 </collectionView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jvC-qC-wYb">
+                    <rect key="frame" x="120" y="117" width="80" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="Jk7-9A-Pkb"/>
+                        <constraint firstAttribute="width" constant="80" id="hub-US-J9m"/>
+                    </constraints>
+                </pageControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="pkI-Ij-EWO" firstAttribute="leading" secondItem="tY1-Kd-SPo" secondAttribute="leading" id="1s4-Pp-T9t"/>
-                <constraint firstItem="pkI-Ij-EWO" firstAttribute="top" secondItem="tY1-Kd-SPo" secondAttribute="top" id="OPp-8b-pHO"/>
-                <constraint firstAttribute="bottom" secondItem="pkI-Ij-EWO" secondAttribute="bottom" id="Ob3-Rl-3ax"/>
-                <constraint firstAttribute="trailing" secondItem="pkI-Ij-EWO" secondAttribute="trailing" id="h3G-3c-8ho"/>
-                <constraint firstAttribute="centerY" secondItem="Jc8-7c-02i" secondAttribute="centerY" constant="-45" id="kNa-RT-H0d"/>
-                <constraint firstAttribute="centerX" secondItem="Jc8-7c-02i" secondAttribute="centerX" id="rS5-RO-mjN"/>
+                <constraint firstItem="pkI-Ij-EWO" firstAttribute="top" secondItem="tY1-Kd-SPo" secondAttribute="top" id="1oI-fq-Z8V"/>
+                <constraint firstAttribute="centerY" secondItem="jvC-qC-wYb" secondAttribute="centerY" constant="-60" id="IjN-fl-vWL"/>
+                <constraint firstAttribute="centerX" secondItem="jvC-qC-wYb" secondAttribute="centerX" id="RJU-DP-Vfa"/>
+                <constraint firstAttribute="trailing" secondItem="pkI-Ij-EWO" secondAttribute="trailing" id="ShD-MJ-qup"/>
+                <constraint firstItem="pkI-Ij-EWO" firstAttribute="leading" secondItem="tY1-Kd-SPo" secondAttribute="leading" id="vYD-eB-ehX"/>
+                <constraint firstAttribute="bottom" secondItem="pkI-Ij-EWO" secondAttribute="bottom" id="zr8-jn-mIZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="collectionView" destination="pkI-Ij-EWO" id="eEN-aD-gB7"/>
                 <outlet property="layout" destination="Pyy-LG-8xF" id="WIX-b3-on1"/>
-                <outlet property="pageController" destination="Jc8-7c-02i" id="EYC-Xg-9Mb"/>
+                <outlet property="pageController" destination="jvC-qC-wYb" id="fii-bk-xod"/>
             </connections>
-            <point key="canvasLocation" x="296" y="-158"/>
+            <point key="canvasLocation" x="296" y="-157"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
