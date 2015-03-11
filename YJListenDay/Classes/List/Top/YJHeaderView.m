@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageController;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *layout;
-@property (nonatomic,strong) NSArray *topMusics;
+
 @end
 
 @implementation YJHeaderView
@@ -24,7 +24,6 @@
     YJHeaderView *view = [[[NSBundle mainBundle] loadNibNamed:@"YJHeaderView" owner:nil options:nil] lastObject];
     // 注册cell
     [view.collectionView registerNib:[UINib nibWithNibName:@"YJTopMusicCell" bundle:nil] forCellWithReuseIdentifier:@"news"];
-    [view.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:2500 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     [view.layout setItemSize:CGSizeMake(view.collectionView.width, view.collectionView.height)];
     view.width = [UIScreen mainScreen].bounds.size.width;
     view.height = [YJHeaderView height];
@@ -34,26 +33,6 @@
 + (CGFloat)height
 {
     return 150;
-}
-
-- (NSArray *)topMusics
-{
-    if (!_topMusics) {
-        YJTopMusic *t1 = [[YJTopMusic alloc] init];
-        t1.icon = @"album";
-        t1.title = @"test1";
-        
-        YJTopMusic *t2 = [[YJTopMusic alloc] init];
-        t2.icon = @"like";
-        t2.title = @"test2";
-        
-        YJTopMusic *t3 = [[YJTopMusic alloc] init];
-        t3.icon = @"card";
-        t3.title = @"test3";
-        _topMusics = [NSArray arrayWithObjects:t1,t2,t3,nil];
-    }
-    return _topMusics;
-    
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -77,7 +56,7 @@
 #pragma mark - UICollectionViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    int page = (scrollView.contentOffset.x / 2500) / scrollView.frame.size.width;
+    int page = (int)((scrollView.contentOffset.x +scrollView.frame.size.width * 0.5)/ scrollView.frame.size.width) % self.topMusics.count;
     self.pageController.currentPage = page;
 }
 

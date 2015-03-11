@@ -19,7 +19,7 @@
  */
 @property (nonatomic,assign) int count;
 /**
- *  音乐描述文件的URL
+ *  detailxx.plist的URL
  */
 @property (nonatomic,copy) NSString *detailURL;
 @end

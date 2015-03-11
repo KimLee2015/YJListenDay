@@ -15,11 +15,18 @@
 #import "YJWordViewController.h"
 #import "YJMusicGroup.h"
 
+#import "YJMusicDetail.h"
 #import "MJAudioTool.h"
 #import "YJTopMusic.h"
+#import "YJHeaderView.h"
 
 @interface YJListViewController () <YJHeaderViewDelegate>
+@property(nonatomic,strong) YJHeaderView *headerView;
 @property (nonatomic,strong) NSArray *musicGroups;
+/**
+ *  存放顶部推荐的YJTopMusic
+ */
+@property (nonatomic,strong) NSArray *topMusics;
 @end
 
 @implementation YJListViewController
@@ -27,10 +34,28 @@
 - (NSArray *)musicGroups
 {
     if (!_musicGroups) {
-        // 从网络上获取数据
         _musicGroups = [YJMusicGroup objectArrayWithFilename:@"list.plist"];
     }
     return _musicGroups;
+}
+
+- (NSArray *)topMusics
+{
+    if (!_topMusics) {
+        _topMusics = [YJTopMusic objectArrayWithFilename:@"top.plist"];
+    }
+    return _topMusics;
+}
+
+- (YJHeaderView *)headerView
+{
+    if (!_headerView) {
+        _headerView = [YJHeaderView view];
+        _headerView.topMusics = self.topMusics;
+        _headerView.delegate = self;
+        
+    }
+    return _headerView;
 }
 
 - (void)viewDidLoad {
@@ -60,9 +85,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    YJHeaderView *view = [YJHeaderView view];
-    view.delegate = self;
-    return view;
+    return self.headerView;
 }
 
 
@@ -82,26 +105,29 @@
     [self performSegueWithIdentifier:@"toMusicDetail" sender:self];
 }
 
+#pragma mark - YJHeaderViewDelegate
+- (void)headerView:(YJHeaderView *)headerView didSelectedCell:(YJTopMusic *)music
+{
+    // 获得控制器
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    YJWordViewController *word = [story instantiateViewControllerWithIdentifier:@"words"];
+    // 传入模型
+    YJMusicDetail *detail = [[YJMusicDetail alloc] init];
+    detail.wordsURL = music.wordsURL;
+    detail.mp3 = music.mp3;
+    word.detail = detail;
+    
+    [self.navigationController pushViewController:word animated:YES];
+}
 
+#pragma mark - 跳转前
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController class] == [YJMusicDetailViewController class]) {
         YJMusicDetailViewController *control = segue.destinationViewController;
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         YJMusicGroup *g = self.musicGroups[path.row % self.musicGroups.count];
         control.detailURL = g.detailURL;
         control.icon = g.icon;
-    } else {
-        YJWordViewController *music = segue.destinationViewController;
-        music.detail = [yjmus]
-    }
     
-}
-
-#pragma mark - YJHeaderViewDelegate
-- (void)headerView:(YJHeaderView *)headerView didSelectedCell:(YJTopMusic *)music
-{
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    [self.navigationController pushViewController:[story instantiateViewControllerWithIdentifier:@"music"] animated:YES];
 }
 @end

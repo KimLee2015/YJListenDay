@@ -14,7 +14,9 @@
 @end
 
 @interface YJHeaderView : UIView
+@property (nonatomic,strong) NSArray *topMusics;
 @property(nonatomic,weak) id delegate;
+
 + (instancetype)view;
 /**
  *  headView的高度
