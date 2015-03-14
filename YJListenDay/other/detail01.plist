@@ -6,7 +6,7 @@
 		<key>title</key>
 		<string>第一题</string>
 		<key>wordsURL</key>
-		<string>words.plist</string>
+		<string>words01.plist</string>
 		<key>mp3</key>
 		<string>001.mp3</string>
 	</dict>

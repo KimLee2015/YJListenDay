@@ -17,6 +17,8 @@
  *  YJMusicDetail
  */
 @property (nonatomic,strong) NSArray *musicDetails;
+@property(nonatomic,weak) YJWordViewController *wordViewController;
+- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 @end
 
 @implementation YJMusicDetailViewController
@@ -32,11 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonClick)];
-}
-
-- (void)backButtonClick
-{
-    NSLog(@"sdd");
 }
 
 #pragma mark - Table view data source
@@ -56,8 +53,14 @@
 #pragma mark - 跳转控制器
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    YJWordViewController *control = segue.destinationViewController;
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    control.detail = self.musicDetails[path.row];
+    self.wordViewController = segue.destinationViewController;
+    self.wordViewController.detail = self.musicDetails[path.row];
+}
+
+#pragma mark - YJWordViewController 返回
+- (IBAction)unwindToList:(UIStoryboardSegue *)segue
+{
+    [self.wordViewController stopPlayMusic];
 }
 @end

@@ -15,7 +15,7 @@
 
 #define setPlayButtonStopImage [self.playButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
 
-#define setPlayButtonPlayImage [self.playButton setImage:[UIImage imageNamed:@"start"] forState:UIControlStateNormal];
+#define setPlayButtonPlayImage [self.playButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
 
 @interface YJWordViewController () <YJMusicCellDelegate,UITableViewDataSource,UITableViewDelegate>
 /**
@@ -30,14 +30,16 @@
  *  MP3文件名
  */
 @property (nonatomic,copy) NSString *mp3;
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 /**
  *  播放器
  */
 @property (nonatomic, strong) AVAudioPlayer *wordPlayer;
 @property (nonatomic,strong) CADisplayLink *link;
+
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)back;
 - (IBAction)play;
@@ -57,13 +59,7 @@
     [super viewDidLoad];
     self.tableView.rowHeight = 200;
     [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonClick)];
      
-}
-
-- (void)backButtonClick
-{
-    NSLog(@"backbutton");
 }
 
 - (void)setDetail:(YJMusicDetail *)detail
@@ -84,6 +80,7 @@
 #pragma mark - 实时高亮显示cell
 - (void)update
 {
+    [self checkButtonState];
     // 当前播放的位置
     double currentTime = self.wordPlayer.currentTime;
     
@@ -112,6 +109,20 @@
     }
 }
 
+#pragma mark - button的启用和禁用
+- (void)checkButtonState
+{
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    if (path.row == 0) {
+        self.backButton.enabled = NO;
+    } else if (path.row == self.words.count - 1){
+        self.nextButton.enabled = NO;
+    } else {
+        self.backButton.enabled = YES;
+        self.nextButton.enabled = YES;
+    }
+}
+
 #pragma mark - UITableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -122,7 +133,14 @@
 {
     YJMusicCell *cell = [YJMusicCell cellWithTableView:self.tableView];
     cell.delegate = self;
-    cell.word = self.words[indexPath.row];
+    // 防止状态重用
+    YJWord *word = [self.words objectAtIndex:indexPath.row];
+    cell.word = word;
+    if (word.isPlayed) {
+        [cell hightLighted];
+    } else {
+        [cell normal];
+    }
     return cell;
 }
 
@@ -131,10 +149,12 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YJMusicCell *cell = (YJMusicCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
     [self playMusic];
-    self.wordPlayer.currentTime = cell.word.time + 0.05;
-    [cell hightLighted];
+    YJWord *word = [self.words objectAtIndex:indexPath.row];
+    self.wordPlayer.currentTime = word.time;
+//    self.wordPlayer.currentTime = word.time + 0.05;
+    word.play = !word.play;
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 /**
@@ -142,8 +162,9 @@
  */
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YJMusicCell *cell = (YJMusicCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
-    [cell normal];
+    YJWord *word = [self.words objectAtIndex:indexPath.row];
+    word.play = false;
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 /**
@@ -169,7 +190,7 @@
  */
 - (void)scrollAndSelectCell:(NSIndexPath *)path
 {
-    [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    [self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionNone animated:NO];
     [self tableView:self.tableView didSelectRowAtIndexPath:path];
     [self.tableView selectRowAtIndexPath:path animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
@@ -179,8 +200,8 @@
     NSIndexPath *path = self.tableView.indexPathForSelectedRow;
     if (path.row <= 0) return;
     NSIndexPath *backPath = [NSIndexPath indexPathForRow:path.row - 1 inSection:0];
-    [self tableView:self.tableView didDeselectRowAtIndexPath:path];
     [self scrollAndSelectCell:backPath];
+    [self tableView:self.tableView didDeselectRowAtIndexPath:path];
     setPlayButtonPlayImage;
 }
 
@@ -200,20 +221,18 @@
 
 - (IBAction)next {
     NSIndexPath *path = self.tableView.indexPathForSelectedRow;
-    if (path.row == self.words.count - 1) { // 到文本末尾
-        return;
+    if (!path) {
+        path = [NSIndexPath indexPathForRow:0 inSection:0];
     }
     NSIndexPath *nextPath = [NSIndexPath indexPathForRow:path.row + 1 inSection:0];
     [self scrollAndSelectCell:nextPath];
     [self tableView:self.tableView didDeselectRowAtIndexPath:path];
     setPlayButtonPlayImage;
-    
-
 }
 
-#pragma mark - 返回
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue
+#pragma mark - 停止播放
+- (void)stopPlayMusic
 {
-    [self.wordPlayer pause];
+    [self.wordPlayer stop];
 }
 @end

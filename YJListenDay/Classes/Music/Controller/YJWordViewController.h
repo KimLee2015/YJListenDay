@@ -10,4 +10,9 @@
 @class YJMusicDetail;
 @interface YJWordViewController : UIViewController
 @property (nonatomic,strong) YJMusicDetail *detail;
+
+/**
+ *  停止播放听力
+ */
+- (void)stopPlayMusic;
 @end

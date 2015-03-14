@@ -28,7 +28,6 @@
 - (void)hightLighted
 {
     self.textView.textColor = [UIColor blueColor];
-    self.word.play = YES;
 }
 
 /**
@@ -37,17 +36,11 @@
 - (void)normal
 {
     self.textView.textColor = [UIColor blackColor];
-    self.word.play = NO;
 }
 
 - (void)setWord:(YJWord *)word
 {
     _word = word;
     self.textView.text = word.text;
-    if (word.isPlayed) {
-        self.textView.textColor = [UIColor blueColor];
-    } else {
-        self.textView.textColor = [UIColor blackColor];
-    }
 }
 @end

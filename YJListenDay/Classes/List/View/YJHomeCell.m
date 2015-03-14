@@ -16,15 +16,11 @@
 
 @end
 @implementation YJHomeCell
+
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
-//    YJHomeCell *cell = [tableView dequeueReusableCellWithIdentifier:[YJHomeCell ID]];
-//    if (cell == nil) {
-//        cell = [[NSBundle mainBundle] loadNibNamed:@"YJHomeCell" owner:nil options:nil][0];
-//    }
-//    
-//    return cell;
-    YJHomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"home"];
+    static NSString *CellIdentifier = @"home";
+    YJHomeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSLog(@"sd");
     }

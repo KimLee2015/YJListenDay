@@ -99,13 +99,7 @@
     return [YJHeaderView height];
 }
 
-#pragma mark 跳转到音乐描述控制器
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self performSegueWithIdentifier:@"toMusicDetail" sender:self];
-}
-
-#pragma mark - YJHeaderViewDelegate
+#pragma mark - YJHeaderView Delegate
 - (void)headerView:(YJHeaderView *)headerView didSelectedCell:(YJTopMusic *)music
 {
     // 获得控制器
@@ -118,6 +112,12 @@
     word.detail = detail;
     
     [self.navigationController pushViewController:word animated:YES];
+}
+
+#pragma mark 跳转到音乐描述控制器
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"toMusicDetail" sender:self];
 }
 
 #pragma mark - 跳转前
