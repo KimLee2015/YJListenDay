@@ -202,7 +202,6 @@
     NSIndexPath *backPath = [NSIndexPath indexPathForRow:path.row - 1 inSection:0];
     [self scrollAndSelectCell:backPath];
     [self tableView:self.tableView didDeselectRowAtIndexPath:path];
-    setPlayButtonPlayImage;
 }
 
 - (IBAction)play {
@@ -227,7 +226,7 @@
     NSIndexPath *nextPath = [NSIndexPath indexPathForRow:path.row + 1 inSection:0];
     [self scrollAndSelectCell:nextPath];
     [self tableView:self.tableView didDeselectRowAtIndexPath:path];
-    setPlayButtonPlayImage;
+    setPlayButtonStopImage;
 }
 
 #pragma mark - 停止播放
