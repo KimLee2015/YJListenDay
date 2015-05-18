@@ -7,16 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A554AFF1AE9139500A8389D /* MyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A554AFE1AE9139500A8389D /* MyNavigationController.m */; };
 		2A6849241AB0626000041EA5 /* YJListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849111AB0626000041EA5 /* YJListViewController.m */; };
-		2A6849251AB0626000041EA5 /* YJNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849131AB0626000041EA5 /* YJNavigationController.m */; };
 		2A6849261AB0626000041EA5 /* YJMusicGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849161AB0626000041EA5 /* YJMusicGroup.m */; };
 		2A6849271AB0626000041EA5 /* YJHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849191AB0626000041EA5 /* YJHeaderView.m */; };
 		2A6849281AB0626000041EA5 /* YJHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A68491A1AB0626000041EA5 /* YJHeaderView.xib */; };
 		2A6849291AB0626000041EA5 /* YJTopMusic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68491C1AB0626000041EA5 /* YJTopMusic.m */; };
 		2A68492A1AB0626000041EA5 /* YJTopMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A68491E1AB0626000041EA5 /* YJTopMusicCell.m */; };
 		2A68492B1AB0626000041EA5 /* YJTopMusicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A68491F1AB0626000041EA5 /* YJTopMusicCell.xib */; };
-		2A68492C1AB0626000041EA5 /* YJHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849221AB0626000041EA5 /* YJHomeCell.m */; };
-		2A68492D1AB0626000041EA5 /* YJHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6849231AB0626000041EA5 /* YJHomeCell.xib */; };
+		2A68492C1AB0626000041EA5 /* YJListBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849221AB0626000041EA5 /* YJListBasicCell.m */; };
 		2A74F1C41AA4804900D2376A /* 001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2A74F1C31AA4804900D2376A /* 001.mp3 */; };
 		2AB262581A8CD5FA0055F395 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB262561A8CD5FA0055F395 /* Main.storyboard */; };
 		2AB2625A1A8CD5FA0055F395 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB262591A8CD5FA0055F395 /* Images.xcassets */; };
@@ -62,10 +61,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A554AFD1AE9139500A8389D /* MyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationController.h; sourceTree = "<group>"; };
+		2A554AFE1AE9139500A8389D /* MyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationController.m; sourceTree = "<group>"; };
 		2A6849101AB0626000041EA5 /* YJListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJListViewController.h; sourceTree = "<group>"; };
 		2A6849111AB0626000041EA5 /* YJListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJListViewController.m; sourceTree = "<group>"; };
-		2A6849121AB0626000041EA5 /* YJNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJNavigationController.h; sourceTree = "<group>"; };
-		2A6849131AB0626000041EA5 /* YJNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJNavigationController.m; sourceTree = "<group>"; };
 		2A6849151AB0626000041EA5 /* YJMusicGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJMusicGroup.h; sourceTree = "<group>"; };
 		2A6849161AB0626000041EA5 /* YJMusicGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJMusicGroup.m; sourceTree = "<group>"; };
 		2A6849181AB0626000041EA5 /* YJHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJHeaderView.h; sourceTree = "<group>"; };
@@ -76,9 +75,8 @@
 		2A68491D1AB0626000041EA5 /* YJTopMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJTopMusicCell.h; sourceTree = "<group>"; };
 		2A68491E1AB0626000041EA5 /* YJTopMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJTopMusicCell.m; sourceTree = "<group>"; };
 		2A68491F1AB0626000041EA5 /* YJTopMusicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YJTopMusicCell.xib; sourceTree = "<group>"; };
-		2A6849211AB0626000041EA5 /* YJHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJHomeCell.h; sourceTree = "<group>"; };
-		2A6849221AB0626000041EA5 /* YJHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJHomeCell.m; sourceTree = "<group>"; };
-		2A6849231AB0626000041EA5 /* YJHomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YJHomeCell.xib; sourceTree = "<group>"; };
+		2A6849211AB0626000041EA5 /* YJListBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJListBasicCell.h; sourceTree = "<group>"; };
+		2A6849221AB0626000041EA5 /* YJListBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJListBasicCell.m; sourceTree = "<group>"; };
 		2A74F1C31AA4804900D2376A /* 001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 001.mp3; sourceTree = "<group>"; };
 		2AB262491A8CD5FA0055F395 /* YJListenDay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJListenDay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AB2624D1A8CD5FA0055F395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,9 +153,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A554AFC1AE9137900A8389D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2A554AFD1AE9139500A8389D /* MyNavigationController.h */,
+				2A554AFE1AE9139500A8389D /* MyNavigationController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		2A68490E1AB0626000041EA5 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				2A554AFC1AE9137900A8389D /* Main */,
 				2A68490F1AB0626000041EA5 /* Controller */,
 				2A6849141AB0626000041EA5 /* Model */,
 				2A6849171AB0626000041EA5 /* Top */,
@@ -171,8 +179,6 @@
 			children = (
 				2A6849101AB0626000041EA5 /* YJListViewController.h */,
 				2A6849111AB0626000041EA5 /* YJListViewController.m */,
-				2A6849121AB0626000041EA5 /* YJNavigationController.h */,
-				2A6849131AB0626000041EA5 /* YJNavigationController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -204,9 +210,8 @@
 		2A6849201AB0626000041EA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2A6849211AB0626000041EA5 /* YJHomeCell.h */,
-				2A6849221AB0626000041EA5 /* YJHomeCell.m */,
-				2A6849231AB0626000041EA5 /* YJHomeCell.xib */,
+				2A6849211AB0626000041EA5 /* YJListBasicCell.h */,
+				2A6849221AB0626000041EA5 /* YJListBasicCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -519,7 +524,6 @@
 				2AB262BB1A8CD6690055F395 /* YJDetailHeaderView.xib in Resources */,
 				2A74F1C41AA4804900D2376A /* 001.mp3 in Resources */,
 				2AB262E91A8CD8150055F395 /* list.plist in Resources */,
-				2A68492D1AB0626000041EA5 /* YJHomeCell.xib in Resources */,
 				2A6849281AB0626000041EA5 /* YJHeaderView.xib in Resources */,
 				2AB2625D1A8CD5FA0055F395 /* LaunchScreen.xib in Resources */,
 				2AB262EA1A8CD8150055F395 /* words01.plist in Resources */,
@@ -557,6 +561,7 @@
 				2AB262B61A8CD6690055F395 /* YJMusicDetailViewController.m in Sources */,
 				2A6849271AB0626000041EA5 /* YJHeaderView.m in Sources */,
 				2AB262B71A8CD6690055F395 /* YJMusicDetail.m in Sources */,
+				2A554AFF1AE9139500A8389D /* MyNavigationController.m in Sources */,
 				2AB262DF1A8CD72F0055F395 /* MJMethod.m in Sources */,
 				2AB262DD1A8CD72F0055F395 /* MJIvar.m in Sources */,
 				2AB262E31A8CD72F0055F395 /* NSObject+MJKeyValue.m in Sources */,
@@ -567,9 +572,8 @@
 				2AB262E21A8CD72F0055F395 /* NSObject+MJCoding.m in Sources */,
 				2AB262DB1A8CD72F0055F395 /* UIView+MJ.m in Sources */,
 				2AB262C11A8CD6700055F395 /* AppDelegate.m in Sources */,
-				2A68492C1AB0626000041EA5 /* YJHomeCell.m in Sources */,
+				2A68492C1AB0626000041EA5 /* YJListBasicCell.m in Sources */,
 				2AB262C21A8CD6700055F395 /* main.m in Sources */,
-				2A6849251AB0626000041EA5 /* YJNavigationController.m in Sources */,
 				2A6849261AB0626000041EA5 /* YJMusicGroup.m in Sources */,
 				2AB262BC1A8CD6690055F395 /* MJAudioTool.m in Sources */,
 			);

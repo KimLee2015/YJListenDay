@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UIApplicationDelegate>
 
 @end
 
@@ -17,7 +17,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+  [self customizeAppearance];
     return YES;
+}
+
+- (void)customizeAppearance {
+  [UINavigationBar appearance].barTintColor = [UIColor blackColor];
+  NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+  textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+  [UINavigationBar appearance].titleTextAttributes = textAttrs;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

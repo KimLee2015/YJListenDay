@@ -10,6 +10,10 @@
 #import "YJTopMusic.h"
 #import "YJTopMusicCell.h"
 #import "UIView+MJ.h"
+#import "MJExtension.h"
+
+
+static NSString *const YJTopMusicCellIdentifier = @"news";
 
 @interface YJHeaderView () <UICollectionViewDataSource,UICollectionViewDelegate,UIPageViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIPageControl *pageController;
@@ -22,12 +26,18 @@
 + (instancetype)view
 {
     YJHeaderView *view = [[[NSBundle mainBundle] loadNibNamed:@"YJHeaderView" owner:nil options:nil] lastObject];
-    // 注册cell
-    [view.collectionView registerNib:[UINib nibWithNibName:@"YJTopMusicCell" bundle:nil] forCellWithReuseIdentifier:@"news"];
-    [view.layout setItemSize:CGSizeMake(view.collectionView.width, view.collectionView.height)];
-    view.width = [UIScreen mainScreen].bounds.size.width;
-    view.height = [YJHeaderView height];
+    [view.collectionView registerNib:[UINib nibWithNibName:@"YJTopMusicCell" bundle:nil] forCellWithReuseIdentifier:YJTopMusicCellIdentifier];
+    view.collectionView.collectionViewLayout = [self flowLayout];
     return view;
+}
+
++ (UICollectionViewFlowLayout *)flowLayout
+{
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [self height]);
+    layout.minimumLineSpacing = 0;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    return layout;
 }
 
 + (CGFloat)height

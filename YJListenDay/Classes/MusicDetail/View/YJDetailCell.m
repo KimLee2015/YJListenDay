@@ -22,6 +22,18 @@
     return [tableView dequeueReusableCellWithIdentifier:@"detail"];
 }
 
+- (void)awakeFromNib
+{
+  [super awakeFromNib];
+  self.backgroundColor = [UIColor blackColor];
+  self.titleView.textColor = [UIColor whiteColor];
+  self.titleView.highlightedTextColor = self.titleView.textColor;
+  
+  UIView *selectionView = [[UIView alloc] initWithFrame:CGRectZero];
+  selectionView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+  self.selectedBackgroundView = selectionView;
+}
+
 - (void)setDetail:(YJMusicDetail *)detail
 {
     _detail = detail;

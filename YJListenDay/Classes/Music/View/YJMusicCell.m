@@ -24,10 +24,21 @@
     return cell;
 }
 
+- (void)awakeFromNib
+{
+  self.backgroundColor = [UIColor blackColor];
+  self.textView.textColor = [UIColor whiteColor];
+}
+
+- (CGFloat)cellHight{
+  NSLog(@"height : %f", self.frame.size.height + 5);
+  return self.frame.size.height + 5;
+}
+
 #pragma mark - label显示状态
 - (void)hightLighted
 {
-    self.textView.textColor = [UIColor blueColor];
+    self.textView.textColor = [UIColor yellowColor];
 }
 
 /**
@@ -35,7 +46,7 @@
  */
 - (void)normal
 {
-    self.textView.textColor = [UIColor blackColor];
+    self.textView.textColor = [UIColor whiteColor];
 }
 
 - (void)setWord:(YJWord *)word

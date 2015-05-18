@@ -19,7 +19,7 @@
 
 @interface YJWordViewController () <YJMusicCellDelegate,UITableViewDataSource,UITableViewDelegate>
 /**
- *  YJMusic数组
+ *  YJMusic
  */
 @property (nonatomic,strong) NSArray *musics;
 /**
@@ -41,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (nonatomic, strong) UITableViewCell *prototypeCell;
 - (IBAction)back;
 - (IBAction)play;
 - (IBAction)next;
@@ -56,10 +57,11 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.tableView.rowHeight = 200;
-    [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-     
+  [super viewDidLoad];
+  [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+  self.view.backgroundColor = [UIColor blackColor];
+  self.tableView.rowHeight = UITableViewAutomaticDimension;
+  self.tableView.estimatedRowHeight = 160.0;
 }
 
 - (void)setDetail:(YJMusicDetail *)detail
@@ -84,7 +86,7 @@
     // 当前播放的位置
     double currentTime = self.wordPlayer.currentTime;
     
-    int count = self.words.count;
+    float count = self.words.count;
     for (int i = 0; i<count; i++) {
         // 1.当前词句
         YJWord *word = self.words[i];
@@ -123,7 +125,7 @@
     }
 }
 
-#pragma mark - UITableView delegate
+#pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.words.count;
@@ -131,30 +133,45 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  return [self basicCellAtIndexPath:indexPath];
+}
+
+- (YJMusicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath
+{
     YJMusicCell *cell = [YJMusicCell cellWithTableView:self.tableView];
-    cell.delegate = self;
-    // 防止状态重用
     YJWord *word = [self.words objectAtIndex:indexPath.row];
+  [self configureBasicCell:cell withYJWord:word];
+  [self configureStateForBasicCell:cell withYJWord:word];
+  return cell;
+}
+
+- (void)configureBasicCell:(YJMusicCell *)cell withYJWord:word
+{
+
     cell.word = word;
-    if (word.isPlayed) {
-        [cell hightLighted];
-    } else {
-        [cell normal];
-    }
-    return cell;
 }
 
 /**
- *  选择并播放cell中的内容
+ *  高亮并播放cell中的内容
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self playMusic];
     YJWord *word = [self.words objectAtIndex:indexPath.row];
+    YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    [self playMusic];
     self.wordPlayer.currentTime = word.time;
-//    self.wordPlayer.currentTime = word.time + 0.05;
-    word.play = !word.play;
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+  
+    [word toggleChecked];
+    [self configureStateForBasicCell:cell withYJWord:word];
+}
+
+- (void)configureStateForBasicCell:(YJMusicCell *)cell withYJWord:(YJWord *)word
+{
+  if (word.isPlayed) {
+    [cell hightLighted];
+  } else {
+    [cell normal];
+  }
 }
 
 /**

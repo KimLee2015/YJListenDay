@@ -7,7 +7,7 @@
 		<string>album</string>
 		<key>title</key>
 		<string>英语四级</string>
-		<key>pages</key>
+		<key>count</key>
 		<string>10</string>
 		<key>detailURL</key>
 		<string>detail01.plist</string>
@@ -17,7 +17,7 @@
 		<string>album</string>
 		<key>title</key>
 		<string>英语六级</string>
-		<key>pages</key>
+		<key>count</key>
 		<string>10</string>
 		<key>detailURL</key>
 		<string>detail01.plist</string>

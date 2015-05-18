@@ -29,4 +29,6 @@
  *  普通显示
  */
 - (void)normal;
+
+- (CGFloat)cellHight;
 @end

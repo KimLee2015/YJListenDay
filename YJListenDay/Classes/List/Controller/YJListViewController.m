@@ -1,20 +1,11 @@
-//
-//  YJListViewController.m
-//  ListenVideo
-//
-//  Created by Lee on 1/24/15.
-//  Copyright (c) 2015 Lee. All rights reserved.
-//
-
 #import "YJListViewController.h"
-#import "YJHomeCell.h"
+#import "YJListBasicCell.h"
 #import "MJExtension.h"
 #import "YJHeaderView.h"
 #import "UIView+MJ.h"
 #import "YJMusicDetailViewController.h"
 #import "YJWordViewController.h"
 #import "YJMusicGroup.h"
-
 #import "YJMusicDetail.h"
 #import "MJAudioTool.h"
 #import "YJTopMusic.h"
@@ -24,7 +15,7 @@
 @property(nonatomic,strong) YJHeaderView *headerView;
 @property (nonatomic,strong) NSArray *musicGroups;
 /**
- *  存放顶部推荐的YJTopMusic
+ *  顶部推荐的YJTopMusic
  */
 @property (nonatomic,strong) NSArray *topMusics;
 @end
@@ -59,12 +50,14 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.tableView registerNib:[UINib nibWithNibName:@"YJHomeCell" bundle:nil] forCellReuseIdentifier:[YJHomeCell ID]];
+  [super viewDidLoad];
+  self.tableView.backgroundColor = [UIColor blackColor];
+  self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+  self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
     
 }
 
-#pragma mark - dataSource Delegate
+#pragma mark - UITableViewDateSourceDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.musicGroups.count * 15;
@@ -72,15 +65,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YJHomeCell *cell = [YJHomeCell cellWithTableView:tableView];
-    cell.musicGroup = self.musicGroups[indexPath.row % self.musicGroups.count];
+    return [self basicCellAtIndexPath:indexPath];
+}
+
+- (YJListBasicCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    YJListBasicCell *cell = [YJListBasicCell cellWithTableView:self.tableView];
+    [self configureBasicCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-#pragma mark - tableView Delegate
+- (void)configureBasicCell:(YJListBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    YJMusicGroup *group = self.musicGroups[indexPath.row % self.musicGroups.count];
+    cell.musicGroup = group;
+}
+
+#pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [YJHomeCell cellHight];
+    return [YJListBasicCell cellHight];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -99,7 +103,7 @@
     return [YJHeaderView height];
 }
 
-#pragma mark - YJHeaderView Delegate
+#pragma mark - YJHeaderViewDelegate
 - (void)headerView:(YJHeaderView *)headerView didSelectedCell:(YJTopMusic *)music
 {
     // 获得控制器
@@ -114,20 +118,21 @@
     [self.navigationController pushViewController:word animated:YES];
 }
 
-#pragma mark 跳转到音乐描述控制器
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self performSegueWithIdentifier:@"toMusicDetail" sender:self];
-}
-
-#pragma mark - 跳转前
+#pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-        YJMusicDetailViewController *control = segue.destinationViewController;
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        YJMusicGroup *g = self.musicGroups[path.row % self.musicGroups.count];
-        control.detailURL = g.detailURL;
-        control.icon = g.icon;
-    
+//        YJMusicDetailViewController *control = segue.destinationViewController;
+//        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+//        YJMusicGroup *g = self.musicGroups[path.row % self.musicGroups.count];
+//        control.detailURL = g.detailURL;
+//        control.icon = g.icon;
+  
+    YJMusicDetailViewController *control = segue.destinationViewController;
+    NSIndexPath *path = [self.tableView indexPathForCell:sender];
+    YJMusicGroup *g = self.musicGroups[path.row % self.musicGroups.count];
+    control.detailURL = g.detailURL;
+    control.icon = g.icon;
+
+  
 }
 @end

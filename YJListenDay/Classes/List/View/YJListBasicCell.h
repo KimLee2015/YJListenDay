@@ -1,5 +1,5 @@
 //
-//  YJHomeCell.h
+//  YJListBasicCell.h
 //  ListenVideo
 //
 //  Created by Lee on 1/24/15.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YJMusicGroup.h"
 
-@interface YJHomeCell : UITableViewCell
+@interface YJListBasicCell : UITableViewCell
 @property (nonatomic,strong) YJMusicGroup *musicGroup;
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 + (CGFloat)cellHight;

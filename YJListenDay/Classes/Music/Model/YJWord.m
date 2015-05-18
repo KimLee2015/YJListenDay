@@ -9,4 +9,8 @@
 #import "YJWord.h"
 
 @implementation YJWord
+- (void)toggleChecked
+{
+  self.play = !self.play;
+}
 @end

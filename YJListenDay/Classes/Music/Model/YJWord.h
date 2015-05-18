@@ -21,4 +21,6 @@
  *  播放状态
  */
 @property (nonatomic,assign,getter=isPlayed) BOOL play;
+
+- (void)toggleChecked;
 @end

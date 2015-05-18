@@ -1,11 +1,3 @@
-//
-//  YJMusicDetailViewController.m
-//  ListenVideo
-//
-//  Created by Lee on 1/25/15.
-//  Copyright (c) 2015 Lee. All rights reserved.
-//
-
 #import "YJMusicDetailViewController.h"
 #import "YJMusicDetail.h"
 #import "YJDetailCell.h"
@@ -18,6 +10,7 @@
  */
 @property (nonatomic,strong) NSArray *musicDetails;
 @property(nonatomic,weak) YJWordViewController *wordViewController;
+- (IBAction)back:(UIBarButtonItem *)sender;
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 @end
 
@@ -32,11 +25,13 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(backButtonClick)];
+  [super viewDidLoad];
+  self.tableView.backgroundColor = [UIColor blackColor];
+  self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+  self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSourceDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.musicDetails.count;
@@ -44,13 +39,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YJDetailCell *cell = [YJDetailCell cellWithTableView:tableView];
-    cell.detail = self.musicDetails[indexPath.row];
-    cell.icon = self.icon;
+  return [self basicCellAtIndexPath:indexPath];
+}
+
+- (YJDetailCell *)basicCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    YJDetailCell *cell = [YJDetailCell cellWithTableView:self.tableView];
+    [self configureBasicCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-#pragma mark - 跳转控制器
+- (void)configureBasicCell:(YJDetailCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    cell.detail = self.musicDetails[indexPath.row];
+    cell.icon = self.icon;
+}
+
+#pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
@@ -58,7 +63,12 @@
     self.wordViewController.detail = self.musicDetails[path.row];
 }
 
-#pragma mark - YJWordViewController 返回
+#pragma mark - UnWind
+
+- (IBAction)back:(UIBarButtonItem *)sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
     [self.wordViewController stopPlayMusic];
