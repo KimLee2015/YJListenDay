@@ -143,13 +143,7 @@
                             <outlet property="delegate" destination="3Br-xi-dSG" id="0mS-9Q-fDQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="i07-FM-aya">
-                        <barButtonItem key="leftBarButtonItem" title="返回" id="wvC-K5-z9C">
-                            <connections>
-                                <action selector="back:" destination="3Br-xi-dSG" id="rfZ-rh-ZFr"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="i07-FM-aya"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kM3-UO-ZqB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,25 +214,25 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="music" selectionStyle="none" indentationWidth="10" reuseIdentifier="music" id="lW7-UE-Cxu" customClass="YJMusicCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="music" selectionStyle="default" indentationWidth="10" reuseIdentifier="music" id="lW7-UE-Cxu" customClass="YJMusicCell">
                                         <rect key="frame" x="26" y="10" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lW7-UE-Cxu" id="fDC-7e-PnB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnY-ql-Qnr" userLabel="text">
-                                                    <rect key="frame" x="12" y="8" width="580" height="28"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnY-ql-Qnr" userLabel="text">
+                                                    <rect key="frame" x="12" y="8" width="580" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="vnY-ql-Qnr" secondAttribute="trailing" constant="8" id="WGm-LS-vrP"/>
-                                                <constraint firstItem="vnY-ql-Qnr" firstAttribute="top" secondItem="fDC-7e-PnB" secondAttribute="top" constant="8" id="Zc1-n7-QzV"/>
-                                                <constraint firstAttribute="bottom" secondItem="vnY-ql-Qnr" secondAttribute="bottom" constant="8" id="hdy-TI-eZ3"/>
-                                                <constraint firstItem="vnY-ql-Qnr" firstAttribute="leading" secondItem="fDC-7e-PnB" secondAttribute="leading" constant="12" id="z4t-PO-Pa7"/>
+                                                <constraint firstAttribute="trailing" secondItem="vnY-ql-Qnr" secondAttribute="trailing" constant="8" id="3aE-ag-i6D"/>
+                                                <constraint firstItem="vnY-ql-Qnr" firstAttribute="leading" secondItem="fDC-7e-PnB" secondAttribute="leading" constant="12" id="Q2j-ON-apC"/>
+                                                <constraint firstItem="vnY-ql-Qnr" firstAttribute="top" secondItem="fDC-7e-PnB" secondAttribute="top" constant="8" id="WSm-QQ-FNz"/>
+                                                <constraint firstAttribute="bottom" secondItem="vnY-ql-Qnr" secondAttribute="bottom" constant="6" id="oVg-wS-NPB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -269,6 +263,9 @@
                                 <segue destination="WGa-RY-kca" kind="unwind" unwindAction="unwindToList:" id="s4F-3v-ZdA"/>
                             </connections>
                         </barButtonItem>
+                        <connections>
+                            <outlet property="backBarButtonItem" destination="wuo-7b-bo6" id="aEa-Ji-61J"/>
+                        </connections>
                     </navigationItem>
                     <connections>
                         <outlet property="backButton" destination="nF2-hJ-7k5" id="Tts-S4-SQh"/>

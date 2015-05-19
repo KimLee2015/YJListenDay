@@ -20,7 +20,7 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
     YJMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"music"];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 

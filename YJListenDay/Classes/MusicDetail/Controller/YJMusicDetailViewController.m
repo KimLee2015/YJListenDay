@@ -10,7 +10,6 @@
  */
 @property (nonatomic,strong) NSArray *musicDetails;
 @property(nonatomic,weak) YJWordViewController *wordViewController;
-- (IBAction)back:(UIBarButtonItem *)sender;
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 @end
 
@@ -58,16 +57,13 @@
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    self.wordViewController = segue.destinationViewController;
-    self.wordViewController.detail = self.musicDetails[path.row];
+  NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+  self.wordViewController = segue.destinationViewController;
+  YJMusicDetail *detail = self.musicDetails[path.row];
+  self.wordViewController.detail = detail;
 }
 
 #pragma mark - UnWind
-
-- (IBAction)back:(UIBarButtonItem *)sender {
-  [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {

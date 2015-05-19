@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *unWindButton;
 
 @property (nonatomic, strong) UITableViewCell *prototypeCell;
 - (IBAction)back;
@@ -51,15 +52,18 @@
 
 - (void)playMusic
 {
-    if (!self.wordPlayer.isPlaying) {
-        self.wordPlayer = [MJAudioTool playMusic:self.mp3];
-    }
+  if (!self.wordPlayer.isPlaying) {
+    self.wordPlayer = [MJAudioTool playMusic:self.mp3];
+    setPlayButtonStopImage
+  }
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self.link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-  self.view.backgroundColor = [UIColor blackColor];
+  self.navigationItem.backBarButtonItem.title = self.detail.title;
+  
+  self.tableView.backgroundColor = [UIColor blackColor];
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 160.0;
 }
@@ -87,7 +91,7 @@
     double currentTime = self.wordPlayer.currentTime;
     
     float count = self.words.count;
-    for (int i = 0; i<count; i++) {
+    for (int i = 0; i < count; i++) {
         // 1.当前词句
         YJWord *word = self.words[i];
         
@@ -102,12 +106,12 @@
             nextWord.time = MAXFLOAT;
         }
         
-        if (currentTime < nextWord.time && currentTime > word.time) {
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-
-            [self showCell:[NSIndexPath indexPathForRow:i inSection:0]];
-            break;
-        }
+      if (currentTime > word.time && currentTime < nextWord.time ) {
+//        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
+        [self showCell:[NSIndexPath indexPathForRow:i inSection:0]];
+        break;
+      }
     }
 }
 
@@ -125,7 +129,7 @@
     }
 }
 
-#pragma mark - UITableViewDelegate
+#pragma mark - UITableViewDataSourceDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.words.count;
@@ -151,20 +155,6 @@
     cell.word = word;
 }
 
-/**
- *  高亮并播放cell中的内容
- */
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    YJWord *word = [self.words objectAtIndex:indexPath.row];
-    YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    [self playMusic];
-    self.wordPlayer.currentTime = word.time;
-  
-    [word toggleChecked];
-    [self configureStateForBasicCell:cell withYJWord:word];
-}
-
 - (void)configureStateForBasicCell:(YJMusicCell *)cell withYJWord:(YJWord *)word
 {
   if (word.isPlayed) {
@@ -174,6 +164,20 @@
   }
 }
 
+#pragma mark - UITableViewDelegate
+/**
+ *  高亮并播放cell中的内容
+ */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YJWord *word = [self.words objectAtIndex:indexPath.row];
+    YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    [self playMusic];
+    self.wordPlayer.currentTime = word.time;
+    [word toggleChecked];
+    [self configureStateForBasicCell:cell withYJWord:word];
+}
+
 /**
  *  让被取消选中行普通显示
  */
@@ -181,7 +185,9 @@
 {
     YJWord *word = [self.words objectAtIndex:indexPath.row];
     word.play = false;
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+  [cell normal];
+//    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 /**
