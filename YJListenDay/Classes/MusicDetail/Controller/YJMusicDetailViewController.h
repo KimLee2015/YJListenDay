@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YJWordViewController.h"
 
 @interface YJMusicDetailViewController : UITableViewController
 /**
@@ -17,4 +18,6 @@
  *  cell中的图片的URL
  */
 @property (nonatomic,copy) NSString *icon;
+
+@property(nonatomic,weak) YJWordViewController *splitViewDetail;
 @end

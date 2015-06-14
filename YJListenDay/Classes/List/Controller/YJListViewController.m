@@ -14,6 +14,7 @@
 @interface YJListViewController () <YJHeaderViewDelegate>
 @property(nonatomic,strong) YJHeaderView *headerView;
 @property (nonatomic,strong) NSArray *musicGroups;
+
 /**
  *  顶部推荐的YJTopMusic
  */
@@ -49,12 +50,30 @@
     return _headerView;
 }
 
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+//    [self.navigationController setNavigationBarHidden:YES];
+//  }
+//}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableView.backgroundColor = [UIColor blackColor];
   self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.2];
   self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([segue.identifier isEqualToString:@"ShowMusicDetail"]) {
+    YJMusicDetailViewController *detailController = segue.destinationViewController;
+    NSIndexPath *path = [self.tableView indexPathForCell:sender];
+    YJMusicGroup *g = self.musicGroups[path.row % self.musicGroups.count];
+    detailController.detailURL = g.detailURL;
+    detailController.icon = g.icon;
+    detailController.splitViewDetail = self.splitViewDetail;
+  }
 }
 
 #pragma mark - UITableViewDateSourceDelegate
@@ -82,6 +101,11 @@
 }
 
 #pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  [self performSegueWithIdentifier:@"ShowMusicDetail" sender:indexPath];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [YJListBasicCell cellHight];
@@ -104,35 +128,17 @@
 }
 
 #pragma mark - YJHeaderViewDelegate
-- (void)headerView:(YJHeaderView *)headerView didSelectedCell:(YJTopMusic *)music
+- (void)headerView:(YJHeaderView *)headerView didSelectCell:(YJTopMusic *)music
 {
-    // 获得控制器
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    YJWordViewController *word = [story instantiateViewControllerWithIdentifier:@"words"];
-    // 传入模型
+    YJWordViewController *wordController = [story instantiateViewControllerWithIdentifier:@"words"];
     YJMusicDetail *detail = [[YJMusicDetail alloc] init];
     detail.wordsURL = music.wordsURL;
     detail.mp3 = music.mp3;
-    word.detail = detail;
-    
-    [self.navigationController pushViewController:word animated:YES];
-}
-
-#pragma mark - Segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-//        YJMusicDetailViewController *control = segue.destinationViewController;
-//        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-//        YJMusicGroup *g = self.musicGroups[path.row % self.musicGroups.count];
-//        control.detailURL = g.detailURL;
-//        control.icon = g.icon;
+    detail.title = music.title;
   
-    YJMusicDetailViewController *control = segue.destinationViewController;
-    NSIndexPath *path = [self.tableView indexPathForCell:sender];
-    YJMusicGroup *g = self.musicGroups[path.row % self.musicGroups.count];
-    control.detailURL = g.detailURL;
-    control.icon = g.icon;
-
-  
+    wordController.detail = detail;
+    wordController.title = detail.title;
+    [self.navigationController pushViewController:wordController animated:YES];
 }
 @end

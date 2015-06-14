@@ -40,7 +40,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *unWindButton;
 
 @property (nonatomic, strong) UITableViewCell *prototypeCell;
 - (IBAction)back;
@@ -54,7 +53,6 @@
 {
   if (!self.wordPlayer.isPlaying) {
     self.wordPlayer = [MJAudioTool playMusic:self.mp3];
-    setPlayButtonStopImage
   }
 }
 
@@ -73,6 +71,9 @@
     _detail = detail;
     self.words = [YJWord objectArrayWithFilename:detail.wordsURL];
     self.mp3 = detail.mp3;
+  if (self.isViewLoaded) {
+    [self.tableView reloadData];
+  }
 }
 
 - (CADisplayLink *)link
@@ -107,15 +108,13 @@
         }
         
       if (currentTime > word.time && currentTime < nextWord.time ) {
-//        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-//        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
         [self showCell:[NSIndexPath indexPathForRow:i inSection:0]];
         break;
       }
     }
 }
 
-#pragma mark - button的启用和禁用
+/* button的启用和禁用*/
 - (void)checkButtonState
 {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
@@ -170,12 +169,13 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YJWord *word = [self.words objectAtIndex:indexPath.row];
-    YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    [self playMusic];
-    self.wordPlayer.currentTime = word.time;
-    [word toggleChecked];
-    [self configureStateForBasicCell:cell withYJWord:word];
+  YJWord *word = [self.words objectAtIndex:indexPath.row];
+  YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+  [self playMusic];
+  self.wordPlayer.currentTime = word.time;
+  [word toggleChecked];
+  [self configureStateForBasicCell:cell withYJWord:word];
+  [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 /**
@@ -187,7 +187,6 @@
     word.play = false;
     YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:indexPath];
   [cell normal];
-//    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 /**
@@ -252,7 +251,6 @@
     setPlayButtonStopImage;
 }
 
-#pragma mark - 停止播放
 - (void)stopPlayMusic
 {
     [self.wordPlayer stop];

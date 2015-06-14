@@ -9,7 +9,7 @@
  *  YJMusicDetail
  */
 @property (nonatomic,strong) NSArray *musicDetails;
-@property(nonatomic,weak) YJWordViewController *wordViewController;
+
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 @end
 
@@ -54,19 +54,33 @@
     cell.icon = self.icon;
 }
 
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (self.view.window.rootViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+    // except 6+
+    [self performSegueWithIdentifier:@"ShowWord" sender:indexPath];
+  } else { // iPad
+    self.splitViewDetail.detail = self.musicDetails[indexPath.row];
+  }
+}
+
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-  self.wordViewController = segue.destinationViewController;
-  YJMusicDetail *detail = self.musicDetails[path.row];
-  self.wordViewController.detail = detail;
+  if ([segue.identifier isEqualToString:@"ShowWord"]) {
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    YJWordViewController *wordViewController = segue.destinationViewController;
+    YJMusicDetail *detail = self.musicDetails[path.row];
+    wordViewController.detail = detail;
+  }
 }
 
 #pragma mark - UnWind
 
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
-    [self.wordViewController stopPlayMusic];
+  YJWordViewController *wordViewController = segue.sourceViewController;
+  [wordViewController stopPlayMusic];
 }
 @end

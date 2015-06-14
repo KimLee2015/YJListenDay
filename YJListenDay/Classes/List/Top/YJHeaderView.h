@@ -10,7 +10,7 @@
 @class YJHeaderView,YJTopMusic;
 
 @protocol YJHeaderViewDelegate <NSObject>
-- (void)headerView:(YJHeaderView *)headerView didSelectedCell:(YJTopMusic *)music;
+- (void)headerView:(YJHeaderView *)headerView didSelectCell:(YJTopMusic *)music;
 @end
 
 @interface YJHeaderView : UIView

@@ -11,7 +11,7 @@
 #import "YJTopMusicCell.h"
 #import "UIView+MJ.h"
 #import "MJExtension.h"
-
+#import "YJCustomLayout.h"
 
 static NSString *const YJTopMusicCellIdentifier = @"news";
 
@@ -27,17 +27,8 @@ static NSString *const YJTopMusicCellIdentifier = @"news";
 {
     YJHeaderView *view = [[[NSBundle mainBundle] loadNibNamed:@"YJHeaderView" owner:nil options:nil] lastObject];
     [view.collectionView registerNib:[UINib nibWithNibName:@"YJTopMusicCell" bundle:nil] forCellWithReuseIdentifier:YJTopMusicCellIdentifier];
-    view.collectionView.collectionViewLayout = [self flowLayout];
+    view.collectionView.collectionViewLayout = [YJCustomLayout layout];
     return view;
-}
-
-+ (UICollectionViewFlowLayout *)flowLayout
-{
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [self height]);
-    layout.minimumLineSpacing = 0;
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    return layout;
 }
 
 + (CGFloat)height
@@ -53,28 +44,28 @@ static NSString *const YJTopMusicCellIdentifier = @"news";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.topMusics.count * 3000;
+    return self.topMusics.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     YJTopMusicCell *cell = [YJTopMusicCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    cell.topMusic = self.topMusics[indexPath.row % self.topMusics.count];
+    cell.topMusic = self.topMusics[indexPath.row];
     return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    int page = (int)((scrollView.contentOffset.x +scrollView.frame.size.width * 0.5)/ scrollView.frame.size.width) % self.topMusics.count;
+    int page = (int)((scrollView.contentOffset.x +scrollView.frame.size.width * 0.5)/ scrollView.frame.size.width);
     self.pageController.currentPage = page;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    YJTopMusic *top = self.topMusics[indexPath.row % self.topMusics.count];
-    if ([self.delegate respondsToSelector:@selector(headerView:didSelectedCell:)]) {
-        [self.delegate headerView:self didSelectedCell:top];
+    YJTopMusic *top = self.topMusics[indexPath.row];
+    if ([self.delegate respondsToSelector:@selector(headerView:didSelectCell:)]) {
+        [self.delegate headerView:self didSelectCell:top];
     }
 }
 

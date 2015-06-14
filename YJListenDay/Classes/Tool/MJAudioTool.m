@@ -1,11 +1,3 @@
-//
-//  MJAudioTool.m
-//  01-音频播放
-//
-//  Created by apple on 14-6-4.
-//  Copyright (c) 2014年 itcast. All rights reserved.
-//
-
 #import "MJAudioTool.h"
 
 @implementation MJAudioTool
@@ -105,7 +97,7 @@ static NSMutableDictionary *_audioPlayerDict;
         
         // 缓冲
         [audioPlayer prepareToPlay];
-        
+      
 //        audioPlayer.enableRate = YES;
 //        audioPlayer.rate = 10.0;
         

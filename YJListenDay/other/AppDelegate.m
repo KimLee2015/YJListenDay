@@ -7,21 +7,64 @@
 //
 
 #import "AppDelegate.h"
+#import "YJListViewController.h"
+#import "YJWordViewController.h"
 
-@interface AppDelegate () <UIApplicationDelegate>
-
+@interface AppDelegate () <UIApplicationDelegate,UISplitViewControllerDelegate>
+@property(nonatomic,weak) UISplitViewController *splitViewController;
+@property(nonatomic,weak) UINavigationController *listNavigationController;
+@property(nonatomic,weak) UINavigationController *wordNavigationViewController;
+@property(nonatomic,weak) YJListViewController *listViewController;
+@property(nonatomic,weak) YJWordViewController *wordViewController;
 @end
 
 @implementation AppDelegate
+- (UISplitViewController *)splitViewController
+{
+  return (UISplitViewController *)self.window.rootViewController;
+}
 
+- (UINavigationController *)listNavigationController
+{
+  return self.splitViewController.viewControllers.firstObject;
+}
+
+- (YJListViewController *)listViewController
+{
+  return (YJListViewController *)self.listNavigationController.topViewController;
+}
+
+- (UINavigationController *)wordNavigationViewController
+{
+  return self.splitViewController.viewControllers.lastObject;
+}
+
+- (YJWordViewController *)wordViewController
+{
+  return (YJWordViewController *)self.wordNavigationViewController.topViewController;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
   [self customizeAppearance];
+  self.wordViewController.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+  self.listViewController.splitViewDetail = self.wordViewController;
+  self.splitViewController.delegate = self;
+  
+
+  return YES;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController
+{
+  if ([secondaryViewController isKindOfClass:[UINavigationController class]]) {
     return YES;
+  }
+  return NO;
 }
 
 - (void)customizeAppearance {
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
   [UINavigationBar appearance].barTintColor = [UIColor blackColor];
   NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
   textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
