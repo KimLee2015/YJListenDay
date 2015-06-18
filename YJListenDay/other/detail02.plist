@@ -3,22 +3,10 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>icon</key>
-		<string>album</string>
-		<key>wordsURL</key>
-		<string>words01.plist</string>
-		<key>title</key>
-		<string>Difficult Customer</string>
-		<key>mp3</key>
-		<string>001.mp3</string>
-	</dict>
-	<dict>
-		<key>icon</key>
-		<string>card</string>
-		<key>wordsURL</key>
-		<string>words02.plist</string>
 		<key>title</key>
 		<string>Volleyball</string>
+		<key>wordsURL</key>
+		<string>words02.plist</string>
 		<key>mp3</key>
 		<string>002.mp3</string>
 	</dict>

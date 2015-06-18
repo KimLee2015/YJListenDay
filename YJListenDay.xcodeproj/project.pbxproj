@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2A27F22A1B0DD7B5002105EF /* YJTopMusicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A27F2291B0DD7B5002105EF /* YJTopMusicCell.xib */; };
+		2A4823ED1B2D934D00C25BA8 /* detail02.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A4823EC1B2D934D00C25BA8 /* detail02.plist */; };
+		2A4823EF1B2D941000C25BA8 /* words02.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A4823EE1B2D941000C25BA8 /* words02.plist */; };
+		2A4823F11B2D9BF100C25BA8 /* 002.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2A4823F01B2D9BF100C25BA8 /* 002.mp3 */; };
 		2A6849241AB0626000041EA5 /* YJListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849111AB0626000041EA5 /* YJListViewController.m */; };
 		2A6849261AB0626000041EA5 /* YJMusicGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849161AB0626000041EA5 /* YJMusicGroup.m */; };
 		2A6849271AB0626000041EA5 /* YJHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6849191AB0626000041EA5 /* YJHeaderView.m */; };
@@ -60,6 +63,9 @@
 
 /* Begin PBXFileReference section */
 		2A27F2291B0DD7B5002105EF /* YJTopMusicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YJTopMusicCell.xib; sourceTree = "<group>"; };
+		2A4823EC1B2D934D00C25BA8 /* detail02.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = detail02.plist; sourceTree = "<group>"; };
+		2A4823EE1B2D941000C25BA8 /* words02.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words02.plist; sourceTree = "<group>"; };
+		2A4823F01B2D9BF100C25BA8 /* 002.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 002.mp3; sourceTree = "<group>"; };
 		2A6849101AB0626000041EA5 /* YJListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJListViewController.h; sourceTree = "<group>"; };
 		2A6849111AB0626000041EA5 /* YJListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJListViewController.m; sourceTree = "<group>"; };
 		2A6849151AB0626000041EA5 /* YJMusicGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJMusicGroup.h; sourceTree = "<group>"; };
@@ -364,8 +370,10 @@
 			children = (
 				2AB262EB1A8CD8650055F395 /* music */,
 				2AB262E51A8CD8150055F395 /* detail01.plist */,
+				2A4823EC1B2D934D00C25BA8 /* detail02.plist */,
 				2AB262E61A8CD8150055F395 /* list.plist */,
 				2AB262E71A8CD8150055F395 /* words01.plist */,
+				2A4823EE1B2D941000C25BA8 /* words02.plist */,
 				2ADA29FF1AAF0B2900F83AE8 /* top.plist */,
 				2AB262C31A8CD72F0055F395 /* Category */,
 				2AB262C61A8CD72F0055F395 /* Lib */,
@@ -421,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				2A74F1C31AA4804900D2376A /* 001.mp3 */,
+				2A4823F01B2D9BF100C25BA8 /* 002.mp3 */,
 			);
 			path = music;
 			sourceTree = "<group>";
@@ -506,10 +515,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB262581A8CD5FA0055F395 /* Main.storyboard in Resources */,
+				2A4823F11B2D9BF100C25BA8 /* 002.mp3 in Resources */,
 				2AB262BB1A8CD6690055F395 /* YJDetailHeaderView.xib in Resources */,
 				2A27F22A1B0DD7B5002105EF /* YJTopMusicCell.xib in Resources */,
 				2A74F1C41AA4804900D2376A /* 001.mp3 in Resources */,
+				2A4823EF1B2D941000C25BA8 /* words02.plist in Resources */,
 				2AB262E91A8CD8150055F395 /* list.plist in Resources */,
+				2A4823ED1B2D934D00C25BA8 /* detail02.plist in Resources */,
 				2A6849281AB0626000041EA5 /* YJHeaderView.xib in Resources */,
 				2AB2625D1A8CD5FA0055F395 /* LaunchScreen.xib in Resources */,
 				2AB262EA1A8CD8150055F395 /* words01.plist in Resources */,

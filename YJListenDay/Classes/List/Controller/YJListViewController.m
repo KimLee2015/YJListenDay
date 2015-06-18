@@ -50,13 +50,6 @@
     return _headerView;
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//  if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-//    [self.navigationController setNavigationBarHidden:YES];
-//  }
-//}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableView.backgroundColor = [UIColor blackColor];
@@ -68,8 +61,8 @@
 {
   if ([segue.identifier isEqualToString:@"ShowMusicDetail"]) {
     YJMusicDetailViewController *detailController = segue.destinationViewController;
-    NSIndexPath *path = [self.tableView indexPathForCell:sender];
-    YJMusicGroup *g = self.musicGroups[path.row % self.musicGroups.count];
+    NSIndexPath *path = sender;
+    YJMusicGroup *g = self.musicGroups[path.row];
     detailController.detailURL = g.detailURL;
     detailController.icon = g.icon;
     detailController.splitViewDetail = self.splitViewDetail;
@@ -79,7 +72,7 @@
 #pragma mark - UITableViewDateSourceDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.musicGroups.count * 15;
+    return self.musicGroups.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,7 +89,7 @@
 
 - (void)configureBasicCell:(YJListBasicCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    YJMusicGroup *group = self.musicGroups[indexPath.row % self.musicGroups.count];
+    YJMusicGroup *group = self.musicGroups[indexPath.row];
     cell.musicGroup = group;
 }
 
@@ -116,12 +109,6 @@
     return self.headerView;
 }
 
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"asdasd";
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return [YJHeaderView height];
@@ -138,7 +125,7 @@
     detail.title = music.title;
   
     wordController.detail = detail;
-    wordController.title = detail.title;
+//    wordController.title = detail.title;
     [self.navigationController pushViewController:wordController animated:YES];
 }
 @end

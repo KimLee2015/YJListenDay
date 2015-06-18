@@ -55,7 +55,7 @@ static NSString *const YJListBasicCellIdentifier = @"home";
     _musicGroup = musicGroup;
     self.iconView.image = [UIImage imageNamed:musicGroup.icon];
     self.titleView.text = musicGroup.title;
-    self.countView.text = [NSString stringWithFormat:@"共%d篇",musicGroup.count];
+    self.countView.text = [NSString stringWithFormat:@"共%d期",musicGroup.count];
 }
 
 @end

@@ -20,18 +20,19 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView
 {
     YJMusicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"music"];
-//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
 - (void)awakeFromNib
 {
-  self.backgroundColor = [UIColor blackColor];
-  self.textView.textColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor blackColor];
+    self.textView.textColor = [UIColor whiteColor];
+    UIView *selectedView = [[UIView alloc] initWithFrame:CGRectZero];
+    selectedView.backgroundColor = [UIColor clearColor];
+    self.selectedBackgroundView = selectedView;
 }
 
 - (CGFloat)cellHight{
-  NSLog(@"height : %f", self.frame.size.height + 5);
   return self.frame.size.height + 5;
 }
 
@@ -41,9 +42,6 @@
     self.textView.textColor = [UIColor yellowColor];
 }
 
-/**
- *  普通显示，并修改模型属性，防止状态重用
- */
 - (void)normal
 {
     self.textView.textColor = [UIColor whiteColor];

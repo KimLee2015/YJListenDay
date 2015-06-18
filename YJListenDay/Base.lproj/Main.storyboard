@@ -20,7 +20,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULZ-Ao-7ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5478" y="-6947"/>
+            <point key="canvasLocation" x="-6638" y="-7867"/>
         </scene>
         <!--每日听力-->
         <scene sceneID="SOh-5Q-87z">
@@ -43,13 +43,13 @@
                                                 <constraint firstAttribute="width" constant="69" id="3NW-dZ-qND"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Count" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJi-EW-5JQ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Count" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJi-EW-5JQ">
                                             <rect key="frame" x="92" y="25" width="457" height="14"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdB-ds-2ql" userLabel="标题">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdB-ds-2ql">
                                             <rect key="frame" x="92" y="3" width="457" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -93,7 +93,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hk7-er-kkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4251" y="-7292"/>
+            <point key="canvasLocation" x="-5411" y="-8212"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5bi-8C-hhV">
@@ -109,7 +109,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUp-kR-lUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6635" y="-5731"/>
+            <point key="canvasLocation" x="-7795" y="-6651"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="byZ-Ik-KBb">
@@ -122,7 +122,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0o-1z-c7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6321" y="-6876"/>
+            <point key="canvasLocation" x="-7481" y="-7796"/>
         </scene>
         <!--Music Detail View Controller-->
         <scene sceneID="JVz-Cr-jwz">
@@ -180,7 +180,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kM3-UO-ZqB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4552" y="-6446"/>
+            <point key="canvasLocation" x="-5712" y="-7366"/>
         </scene>
         <!--Word View Controller-->
         <scene sceneID="kVu-bt-101">
@@ -247,7 +247,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="music" selectionStyle="default" indentationWidth="10" reuseIdentifier="music" id="lW7-UE-Cxu" customClass="YJMusicCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="music" selectionStyle="default" indentationWidth="10" reuseIdentifier="music" rowHeight="44" id="lW7-UE-Cxu" customClass="YJMusicCell">
                                         <rect key="frame" x="26" y="10" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lW7-UE-Cxu" id="fDC-7e-PnB">
@@ -256,7 +256,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnY-ql-Qnr" userLabel="text">
                                                     <rect key="frame" x="12" y="8" width="580" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -291,26 +291,24 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Lka-rF-uCU">
-                        <barButtonItem key="leftBarButtonItem" title="back" id="wuo-7b-bo6">
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="done" id="wuo-7b-bo6">
                             <connections>
-                                <segue destination="WGa-RY-kca" kind="unwind" unwindAction="unwindToList:" id="s4F-3v-ZdA"/>
+                                <action selector="quit:" destination="G8e-2w-6Kx" id="ReY-Jh-2O2"/>
                             </connections>
                         </barButtonItem>
-                        <connections>
-                            <outlet property="backBarButtonItem" destination="wuo-7b-bo6" id="aEa-Ji-61J"/>
-                        </connections>
                     </navigationItem>
                     <connections>
+                        <outlet property="backBarButton" destination="wuo-7b-bo6" id="sSK-Yn-wR5"/>
                         <outlet property="backButton" destination="nF2-hJ-7k5" id="Tts-S4-SQh"/>
                         <outlet property="nextButton" destination="4GV-hF-2lt" id="5AP-RG-IDg"/>
                         <outlet property="playButton" destination="MZq-O8-V9a" id="THG-RU-lZQ"/>
+                        <outlet property="quitButton" destination="wuo-7b-bo6" id="A1P-pO-25k"/>
                         <outlet property="tableView" destination="3Hr-hm-Ob3" id="Lvu-GF-Mjg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rXL-4h-Icc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="WGa-RY-kca" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-5427" y="-5572"/>
+            <point key="canvasLocation" x="-6587" y="-6492"/>
         </scene>
     </scenes>
     <resources>
@@ -320,6 +318,6 @@
         <image name="play" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Kz-O7-jGp"/>
+        <segue reference="5GQ-TY-BKj"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -6,9 +6,9 @@
 		<key>icon</key>
 		<string>album</string>
 		<key>title</key>
-		<string>英语四级</string>
+		<string>日常类</string>
 		<key>count</key>
-		<string>10</string>
+		<string>1</string>
 		<key>detailURL</key>
 		<string>detail01.plist</string>
 	</dict>
@@ -16,11 +16,11 @@
 		<key>icon</key>
 		<string>album</string>
 		<key>title</key>
-		<string>英语六级</string>
+		<string>科技类</string>
 		<key>count</key>
-		<string>10</string>
+		<string>1</string>
 		<key>detailURL</key>
-		<string>detail01.plist</string>
+		<string>detail02.plist</string>
 	</dict>
 </array>
 </plist>

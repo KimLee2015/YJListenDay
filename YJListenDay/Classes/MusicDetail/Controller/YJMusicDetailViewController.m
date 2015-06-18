@@ -75,12 +75,4 @@
     wordViewController.detail = detail;
   }
 }
-
-#pragma mark - UnWind
-
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue
-{
-  YJWordViewController *wordViewController = segue.sourceViewController;
-  [wordViewController stopPlayMusic];
-}
 @end

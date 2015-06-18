@@ -26,14 +26,26 @@ static NSString *const YJTopMusicCellIdentifier = @"news";
 + (instancetype)view
 {
     YJHeaderView *view = [[[NSBundle mainBundle] loadNibNamed:@"YJHeaderView" owner:nil options:nil] lastObject];
-    [view.collectionView registerNib:[UINib nibWithNibName:@"YJTopMusicCell" bundle:nil] forCellWithReuseIdentifier:YJTopMusicCellIdentifier];
-    view.collectionView.collectionViewLayout = [YJCustomLayout layout];
     return view;
 }
 
 + (CGFloat)height
 {
     return 150;
+}
+
+- (void)setTopMusics:(NSArray *)topMusics
+{
+    _topMusics = topMusics;
+    self.pageController.numberOfPages = topMusics.count;
+}
+
+- (void)awakeFromNib
+{
+    [self.collectionView registerNib:[UINib nibWithNibName:@"YJTopMusicCell" bundle:nil] forCellWithReuseIdentifier:YJTopMusicCellIdentifier];
+    self.collectionView.collectionViewLayout = [YJCustomLayout layout];
+    self.collectionView.backgroundColor = [UIColor blackColor];
+    self.pageController.numberOfPages = self.topMusics.count;
 }
 
 #pragma mark - UICollectionViewDataSource

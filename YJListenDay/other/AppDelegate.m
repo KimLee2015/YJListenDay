@@ -66,6 +66,7 @@
 - (void)customizeAppearance {
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
   [UINavigationBar appearance].barTintColor = [UIColor blackColor];
+  [UINavigationBar appearance].tintColor = [UIColor yellowColor];
   NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
   textAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
   [UINavigationBar appearance].titleTextAttributes = textAttrs;
