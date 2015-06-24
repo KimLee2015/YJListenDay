@@ -9,8 +9,6 @@
  *  YJMusicDetail
  */
 @property (nonatomic,strong) NSArray *musicDetails;
-
-- (IBAction)unwindToList:(UIStoryboardSegue *)segue;
 @end
 
 @implementation YJMusicDetailViewController

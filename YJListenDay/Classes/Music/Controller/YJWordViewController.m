@@ -19,38 +19,41 @@
 
 @interface YJWordViewController () <YJMusicCellDelegate,UITableViewDataSource,UITableViewDelegate>
 #pragma mark - Properties
-/**
- *  YJMusic
- */
 @property (nonatomic,strong) NSArray *musics;
-/**
- *  YJWord
- */
 @property (nonatomic,strong) NSArray *words;
-/**
- *  MP3文件名
- */
 @property (nonatomic,copy) NSString *mp3;
 /**
  *  播放器
  */
 @property (nonatomic, strong) AVAudioPlayer *wordPlayer;
+@property (nonatomic,strong) UIImage *playImage;
+@property (nonatomic,strong) UIImage *stopImage;
 @property (nonatomic,strong) CADisplayLink *link;
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (nonatomic, strong) UITableViewCell *prototypeCell;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *playButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backBarButton;
-@property (nonatomic, strong) UITableViewCell *prototypeCell;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *quitButton;
-
-- (IBAction)quit:(UIBarButtonItem *)sender;
-- (IBAction)back;
-- (IBAction)play;
-- (IBAction)next;
 @end
 
 @implementation YJWordViewController
+- (UIImage *)playImage {
+    if (_playImage == nil) {
+        _playImage = [UIImage imageNamed:@"play"];
+    }
+    return _playImage;
+}
+
+- (UIImage *)stopImage {
+    if (_stopImage == nil) {
+        _stopImage = [UIImage imageNamed:@"stop"];
+    }
+    return _stopImage;
+}
+
 #pragma mark - LifeCycle
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -62,7 +65,6 @@
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 50;
 }
-
 
 
 - (void)setDetail:(YJMusicDetail *)detail
@@ -84,7 +86,7 @@
 }
 
 #pragma mark - IBAction
-- (IBAction)back {
+- (IBAction)back:(UIBarButtonItem *)sender {
     NSIndexPath *path = self.tableView.indexPathForSelectedRow;
     if (path.row <= 0) return;
     NSIndexPath *backPath = [NSIndexPath indexPathForRow:path.row - 1 inSection:0];
@@ -92,13 +94,13 @@
     [self tableView:self.tableView didDeselectRowAtIndexPath:path];
 }
 
-- (IBAction)play {
+- (IBAction)play:(UIBarButtonItem *)sender {
     if (self.wordPlayer.isPlaying) {
         [self.wordPlayer stop];
-        setPlayButtonPlayImage;
+        sender.image = self.playImage;
     } else { // 还没播放
         [self playMusic];
-        setPlayButtonStopImage;
+        sender.image = self.stopImage;
         NSIndexPath *path = self.tableView.indexPathForSelectedRow;
         if (path.row > 0) { // 先按了下一个按钮跳转到其他语句
             [self tableView:self.tableView didSelectRowAtIndexPath:path];
@@ -106,7 +108,7 @@
     }
 }
 
-- (IBAction)next {
+- (IBAction)next:(UIBarButtonItem *)sender {
     NSIndexPath *path = self.tableView.indexPathForSelectedRow;
     if (!path) {
         path = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -114,7 +116,7 @@
     NSIndexPath *nextPath = [NSIndexPath indexPathForRow:path.row + 1 inSection:0];
     [self scrollAndSelectCell:nextPath];
     [self tableView:self.tableView didDeselectRowAtIndexPath:path];
-    setPlayButtonStopImage;
+    sender.image = self.stopImage;
 }
 
 - (IBAction)quit:(UIBarButtonItem *)sender {
@@ -209,6 +211,7 @@
     YJWord *word = [self.words objectAtIndex:indexPath.row];
     YJMusicCell *cell = (YJMusicCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     [self playMusic];
+    self.playButton.image = self.stopImage;
     self.wordPlayer.currentTime = word.time;
     [word toggleChecked];
     [self configureStateForBasicCell:cell withYJWord:word];

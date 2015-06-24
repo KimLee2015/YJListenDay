@@ -1,7 +1,6 @@
 #import "YJListViewController.h"
 #import "YJListBasicCell.h"
 #import "MJExtension.h"
-#import "YJHeaderView.h"
 #import "UIView+MJ.h"
 #import "YJMusicDetailViewController.h"
 #import "YJWordViewController.h"
@@ -9,16 +8,16 @@
 #import "YJMusicDetail.h"
 #import "MJAudioTool.h"
 #import "YJTopMusic.h"
-#import "YJHeaderView.h"
+#import "YJTopMusicCell.h"
 
-@interface YJListViewController () <YJHeaderViewDelegate>
-@property(nonatomic,strong) YJHeaderView *headerView;
+@interface YJListViewController () <UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic,strong) NSArray *musicGroups;
-
-/**
- *  顶部推荐的YJTopMusic
- */
 @property (nonatomic,strong) NSArray *topMusics;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+
 @end
 
 @implementation YJListViewController
@@ -35,26 +34,21 @@
 {
     if (!_topMusics) {
         _topMusics = [YJTopMusic objectArrayWithFilename:@"top.plist"];
+        self.pageControl.numberOfPages = _topMusics.count;
     }
     return _topMusics;
 }
 
-- (YJHeaderView *)headerView
-{
-    if (!_headerView) {
-        _headerView = [YJHeaderView view];
-        _headerView.topMusics = self.topMusics;
-        _headerView.delegate = self;
-        
-    }
-    return _headerView;
-}
-
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.tableView.backgroundColor = [UIColor blackColor];
-  self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.2];
-  self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    [super viewDidLoad];
+    self.tableView.backgroundColor = [UIColor blackColor];
+    self.tableView.separatorColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+    self.tableView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    
+    UICollectionViewFlowLayout *layout = (id) self.collectionView.collectionViewLayout;
+    layout.itemSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, self.collectionView.bounds.size.height);
+    self.pageControl.numberOfPages = self.topMusics.count;
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -104,28 +98,42 @@
     return [YJListBasicCell cellHight];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return self.headerView;
+    return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [YJHeaderView height];
+    return self.topMusics.count;
 }
 
-#pragma mark - YJHeaderViewDelegate
-- (void)headerView:(YJHeaderView *)headerView didSelectCell:(YJTopMusic *)music
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    YJTopMusicCell *cell = [YJTopMusicCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+    cell.topMusic = self.topMusics[indexPath.row];
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    int page = (int)((scrollView.contentOffset.x +scrollView.frame.size.width * 0.5)/ scrollView.frame.size.width);
+    self.pageControl.currentPage = page;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     YJWordViewController *wordController = [story instantiateViewControllerWithIdentifier:@"words"];
     YJMusicDetail *detail = [[YJMusicDetail alloc] init];
-    detail.wordsURL = music.wordsURL;
-    detail.mp3 = music.mp3;
-    detail.title = music.title;
-  
+    YJTopMusic *top = self.topMusics[indexPath.row];
+    detail.wordsURL = top.wordsURL;
+    detail.mp3 = top.mp3;
+    detail.title = top.title;
+    
     wordController.detail = detail;
-//    wordController.title = detail.title;
     [self.navigationController pushViewController:wordController animated:YES];
 }
 @end

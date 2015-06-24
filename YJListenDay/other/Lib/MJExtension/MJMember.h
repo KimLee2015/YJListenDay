@@ -1,11 +1,3 @@
-//
-//  MJMember.h
-//  MJExtension
-//
-//  Created by mj on 14-1-15.
-//  Copyright (c) 2014年 itcast. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import <objc/message.h>
 #import "MJType.h"
