@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>95043926-2CAC-4F68-BF4A-F71188073C30</string>
+	<key>IDESourceControlProjectName</key>
+	<string>YJListenDay</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0FE0D2485ACD82911E1CB2CCC575582232F2A58B</key>
+		<string>https://github.com/KimLee2015/YJListenDay.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>YJListenDay.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0FE0D2485ACD82911E1CB2CCC575582232F2A58B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/KimLee2015/YJListenDay.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0FE0D2485ACD82911E1CB2CCC575582232F2A58B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0FE0D2485ACD82911E1CB2CCC575582232F2A58B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>YJListenDay</string>
+		</dict>
+	</array>
+</dict>
+</plist>

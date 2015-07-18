@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YJWordViewController.h"
+@class YJWordViewController;
 
 @interface YJMusicDetailViewController : UITableViewController
 /**

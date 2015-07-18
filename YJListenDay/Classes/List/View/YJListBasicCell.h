@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YJMusicGroup.h"
+@class YJMusicGroup;
 
 @interface YJListBasicCell : UITableViewCell
 @property (nonatomic,strong) YJMusicGroup *musicGroup;
