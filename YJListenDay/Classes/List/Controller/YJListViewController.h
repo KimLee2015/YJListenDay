@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 @class YJWordViewController;
 
+
+
 @interface YJListViewController : UIViewController
 @property(nonatomic,weak) YJWordViewController *splitViewDetail;
 @end

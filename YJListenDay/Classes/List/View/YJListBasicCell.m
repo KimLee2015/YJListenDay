@@ -8,6 +8,7 @@
 
 #import "YJListBasicCell.h"
 #import "UIView+MJ.h"
+#import "YJMusicGroup.h"
 
 static NSString *const YJListBasicCellIdentifier = @"home";
 
@@ -15,7 +16,6 @@ static NSString *const YJListBasicCellIdentifier = @"home";
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet UILabel *countView;
-
 @end
 @implementation YJListBasicCell
 
@@ -41,7 +41,7 @@ static NSString *const YJListBasicCellIdentifier = @"home";
   self.backgroundColor = [UIColor blackColor];
   self.titleView.textColor = [UIColor whiteColor];
   self.titleView.highlightedTextColor = self.titleView.textColor;
-  
+    
   self.countView.textColor = [UIColor colorWithWhite:1.0 alpha:0.4];
   self.countView.highlightedTextColor = self.countView.textColor;
   
